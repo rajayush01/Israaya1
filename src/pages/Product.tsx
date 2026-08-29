@@ -13,11 +13,7 @@ const accordions = [
   { title: 'Fabric & Craft', key: 'fabricCraft' as const },
   { title: 'Fit & Sizing', key: 'fit' as const },
   { title: 'Care', key: 'care' as const },
-<<<<<<< HEAD
   { title: 'Delivery & Customization', key: 'shipping' as const },
-=======
-  { title: 'Shipping', key: 'shipping' as const },
->>>>>>> 672c88eb4960d8c60fc7a164ffdc617e4d3da2f9
   { title: 'Returns', key: 'returns' as const },
 ]
 
@@ -34,20 +30,12 @@ export default function Product() {
   const isWishlisted = wishlist.includes(product.id)
 
   const accordionContent: Record<string, string> = {
-<<<<<<< HEAD
     fabricCraft: `${product.fabric}. ${product.craft}. Colour may vary slightly due to the handmade nature of this piece.`,
     fit: product.fit,
     care: 'Dry clean only. For detailed care, see our Care Instructions page.',
     shipping:
       'Made to order and shipped both within India and internationally. Standard delivery is 15–20 days from order confirmation, inclusive of delivery within India — international orders may take slightly longer depending on destination. Every piece is open to customization, from sizing to small design changes — reach out to us on WhatsApp or email to personalize your piece or request faster delivery for an upcoming event.',
     returns: 'Exchanges accepted within 7 days for unworn, unaltered pieces with tags attached. See our Return & Exchange Policy for full details.',
-=======
-    fabricCraft: `${product.fabric}. ${product.craft}.`,
-    fit: product.fit,
-    care: 'Dry clean only. Store away from direct sunlight, folded flat with muslin between embroidered layers.',
-    shipping: 'Ships within 5–7 business days across India. International shipping available at checkout.',
-    returns: 'Exchanges accepted within 7 days for unworn, unaltered pieces with tags attached.',
->>>>>>> 672c88eb4960d8c60fc7a164ffdc617e4d3da2f9
   }
 
   return (
@@ -67,7 +55,6 @@ export default function Product() {
           <p className="text-[10px] tracking-label uppercase text-brown/50 mb-2">
             {product.collection} · {product.chapter}
           </p>
-<<<<<<< HEAD
           <h1 className="font-display text-4xl md:text-5xl mb-1">{product.name}</h1>
           <p className="text-[11px] tracking-label uppercase text-brown/50 mb-4">{product.color}</p>
           <p className="text-lg mb-6 flex items-baseline gap-3">
@@ -81,10 +68,6 @@ export default function Product() {
               </>
             )}
           </p>
-=======
-          <h1 className="font-display text-4xl md:text-5xl mb-4">{product.name}</h1>
-          <p className="text-lg mb-6">₹{product.price.toLocaleString('en-IN')}</p>
->>>>>>> 672c88eb4960d8c60fc7a164ffdc617e4d3da2f9
 
           <p className="text-sm text-brown/80 leading-relaxed mb-8 max-w-md">
             {product.description}

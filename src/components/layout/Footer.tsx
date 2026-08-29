@@ -14,9 +14,9 @@ export default function Footer() {
         </RevealText>
 
         <div className="grid grid-cols-2 md:grid-cols-5 gap-10 md:gap-6 pb-16 border-b border-softwhite/10">
-          <FooterCol title="Shop" items={['New Arrivals', 'Collections', 'All Pieces']} />
-          <FooterCol title="About" items={['Our Story', 'Craft', 'Journal']} />
-          <FooterCol title="Help" items={['Contact', 'Shipping', 'Returns', 'Size Guide']} />
+          <FooterCol title="Shop" items={['Nikhaar Collection', 'All Products']} />
+          <FooterCol title="Customer Care" items={['Contact Us', 'FAQs', 'Shipping & Delivery', 'Returns & Exchanges', 'Cancellation Policy', 'Size Guide', 'Care Guide', 'Bespoke Enquiries']} />
+          <FooterCol title="Legal" items={['Privacy Policy', 'Terms & Conditions', 'Shipping Policy', 'Return & Exchange Policy', 'Cancellation Policy', 'Disclaimer']} />
           <FooterCol
             title="Follow"
             items={[]}

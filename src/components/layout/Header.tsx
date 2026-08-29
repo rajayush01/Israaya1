@@ -43,12 +43,8 @@ export default function Header() {
             <Link to="/shop" className="underline-reveal">Shop</Link>
             <Link to="/collections" className="underline-reveal">Collections</Link>
             <Link to="/stories" className="underline-reveal">Stories</Link>
-<<<<<<< HEAD
-                        <Link to="/about" className="underline-reveal">About</Link>
+            <Link to="/about" className="underline-reveal">About</Link>
             <Link to="/contact" className="underline-reveal">Contact</Link>
-
-=======
->>>>>>> 672c88eb4960d8c60fc7a164ffdc617e4d3da2f9
           </nav>
 
           <button
