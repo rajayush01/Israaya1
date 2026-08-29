@@ -41,6 +41,7 @@ export default function ProductCard({
             {product.collection}
           </p>
           <p className="font-display text-lg">{product.name}</p>
+<<<<<<< HEAD
           <p className="text-sm text-charcoal/70 mt-1 flex items-baseline gap-2">
             <span>₹{product.price.toLocaleString('en-IN')}</span>
             {product.originalPrice && (
@@ -48,6 +49,10 @@ export default function ProductCard({
                 ₹{product.originalPrice.toLocaleString('en-IN')}
               </span>
             )}
+=======
+          <p className="text-sm text-charcoal/70 mt-1">
+            ₹{product.price.toLocaleString('en-IN')}
+>>>>>>> 672c88eb4960d8c60fc7a164ffdc617e4d3da2f9
           </p>
         </div>
         <motion.span
