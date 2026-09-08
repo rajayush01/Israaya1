@@ -1,5 +1,7 @@
 import RevealText from '@/components/ui/RevealText'
-import komalTara1 from '@/assets/products/komal-tara-1.png'
+import { siteImages } from '@/data/imageManifest'
+
+const philosophyImage = siteImages[10]
 
 export default function PhilosophySection() {
   return (
@@ -7,7 +9,7 @@ export default function PhilosophySection() {
       <div className="grid md:grid-cols-2 gap-10 md:gap-16 items-center">
         <RevealText>
           <img
-            src={komalTara1}
+            src={philosophyImage}
             alt="Israaya philosophy"
             className="w-full h-[420px] md:h-[560px] object-cover"
           />

@@ -1,7 +1,9 @@
 import RevealText from '@/components/ui/RevealText'
 import SectionLabel from '@/components/ui/SectionLabel'
-import sonaPankh2 from '@/assets/products/sona-pankh-2.png'
-import komalTara2 from '@/assets/products/komal-tara-2.png'
+import { siteImages } from '@/data/imageManifest'
+
+const craftImageLarge = siteImages[16]
+const craftImageSmall = siteImages[18]
 
 export default function CraftSection() {
   return (
@@ -22,8 +24,8 @@ export default function CraftSection() {
         <div className="grid md:grid-cols-12 gap-4 md:gap-5 mt-16">
           <RevealText delay={0.1} className="md:col-span-7">
             <img
-              src={sonaPankh2}
-              alt="Hand embroidery detail — Sona Pankh"
+              src={craftImageLarge}
+              alt="Hand embroidery detail"
               className="w-full h-[380px] md:h-[540px] object-cover object-top"
             />
           </RevealText>
@@ -31,8 +33,8 @@ export default function CraftSection() {
           <div className="md:col-span-5 flex flex-col justify-between gap-8">
             <RevealText delay={0.2}>
               <img
-                src={komalTara2}
-                alt="Fabric detail — Komal Tara"
+                src={craftImageSmall}
+                alt="Fabric detail"
                 className="w-full h-[220px] object-cover"
               />
             </RevealText>

@@ -1,7 +1,4 @@
-import komalTara1 from '@/assets/products/komal-tara-1.png'
-import komalTara2 from '@/assets/products/komal-tara-2.png'
-import sonaPankh1 from '@/assets/products/sona-pankh-1.png'
-import sonaPankh2 from '@/assets/products/sona-pankh-2.png'
+import { siteImages } from './imageManifest'
 
 export const collections = [
   {
@@ -11,7 +8,7 @@ export const collections = [
     chapter: 'Chapter I',
     description:
       'Nikhaar means the full blossoming of beauty into its most radiant form — the moment a flower stops growing and simply becomes what it was always meant to be. Our debut chapter draws its inspiration entirely from nature, from gardens, from the small quiet details you only notice when you slow down and actually look. Every piece takes its name from something found there — a star caught in moonlight, a peacock feather, a bird mid-flight — each carrying its own small story from the natural world. The colours lean soft and daytime, easy to wear, easy to style, built to move between occasions rather than sit in a wardrobe waiting for one specific day. Like every chapter at Israaya, Nikhaar is one of a kind — it will not repeat, and it will not return once it closes.',
-    image: komalTara1,
+    image: siteImages[42],
     pieceIds: ['hansa', 'madhura', 'sitara-chandni', 'kamal', 'sona-pankh', 'komal-tara'],
   },
 ]
@@ -28,8 +25,8 @@ export const stories = [
       'The three-piece set — a long straight kurta, matching straight pants and a dupatta finished in a unique textured organza — is made to feel comfortable and put together without needing much effort. Resham thread and sequin embroidery run along the neckline and down the front split of the kurta, kept precise and detailed against an otherwise clean silhouette.',
       'The dupatta\u2019s texture adds dimension without embroidery, playing off the embellished neckline and split rather than competing with it, so the set feels considered from every angle.',
     ],
-    image: komalTara1,
-    images: [komalTara1, komalTara2],
+    image: siteImages[35],
+    images: siteImages.slice(35, 42),
   },
   {
     slug: 'sona-pankh',
@@ -42,8 +39,8 @@ export const stories = [
       'The detailing runs through the entire outfit, on the sleeves, along the hem, and through the dupatta, all done entirely by hand. Every motif has been placed with care, giving the surface a texture you can actually feel and not just see.',
       'What makes Sona Pankh stand out is how versatile it is to style. Wear it with the dupatta for a complete, festive look, or set it aside and let the outfit carry itself for something more relaxed — either way, it still feels like the same piece, just styled differently depending on the moment.',
     ],
-    image: sonaPankh1,
-    images: [sonaPankh1, sonaPankh2],
+    image: siteImages[28],
+    images: siteImages.slice(28, 35),
   },
   {
     slug: 'sitara-chandni',
@@ -56,20 +53,9 @@ export const stories = [
       'It is hand embroidered with intricate silver zardozi work, detailed with delicate floral motifs and subtle animal motifs woven through the yoke and sleeves, making it a one-of-a-kind design unlike any other piece in the collection.',
       'Timeless in its silhouette and effortless to style across multiple occasions, Sitara Chandni is designed to be the kind of piece you hold onto, one that finds its way back into your wardrobe year after year.',
     ],
-    image: komalTara1,
-    images: [
-      sonaPankh1,sonaPankh2
-    ],
+    image: siteImages[14],
+    images: siteImages.slice(14, 21),
   },
 ]
 
-export const socialGrid = [
-  komalTara1,
-  sonaPankh1,
-  komalTara2,
-  sonaPankh2,
-  komalTara1,
-  sonaPankh1,
-  komalTara2,
-  sonaPankh2,
-]
+export const socialGrid = siteImages.slice(0, 8)

@@ -6,6 +6,7 @@ import { products } from '@/data/products'
 import { useStore } from '@/lib/store'
 import RevealText from '@/components/ui/RevealText'
 import ProductCard from '@/components/products/ProductCard'
+import ProductGallery from '@/components/products/ProductGallery'
 
 const sizes = ['XS', 'S', 'M', 'L', 'XL']
 
@@ -42,13 +43,9 @@ export default function Product() {
     <div className="pt-24 md:pt-28">
       <div className="max-w-[1600px] mx-auto px-6 md:px-10 grid md:grid-cols-2 gap-10 md:gap-16">
         {/* Gallery */}
-        <div className="flex flex-col gap-4">
-          {product.images.map((img, i) => (
-            <RevealText key={i} delay={i * 0.1}>
-              <img src={img} alt={`${product.name} ${i + 1}`} className="w-full object-cover" />
-            </RevealText>
-          ))}
-        </div>
+        <RevealText>
+          <ProductGallery images={product.images} name={product.name} />
+        </RevealText>
 
         {/* Info */}
         <div className="md:sticky md:top-28 md:self-start pb-24">

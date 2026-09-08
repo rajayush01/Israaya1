@@ -1,6 +1,8 @@
 import { motion } from 'framer-motion'
 import { ArrowRight } from 'lucide-react'
-import heroImage from '@/assets/products/komal-tara-2.png'
+import { siteImages } from '@/data/imageManifest'
+
+const heroImage = siteImages[43]
 
 const ease = [0.25, 1, 0.5, 1] as const
 

@@ -2,35 +2,55 @@ import { useState } from 'react'
 import { AnimatePresence, motion } from 'framer-motion'
 import { Play, X } from 'lucide-react'
 import RevealText from '@/components/ui/RevealText'
-import sonaPankh2 from '@/assets/products/sona-pankh-2.png'
+import InstagramIcon from '@/components/ui/InstagramIcon'
+import { useStore } from '@/lib/store'
+import { siteImages } from '@/data/imageManifest'
+
+const reelImage = siteImages[30]
+const INSTAGRAM_HANDLE = 'israayaindiaofficial'
+const INSTAGRAM_URL = `https://www.instagram.com/${INSTAGRAM_HANDLE}/`
 
 export default function CampaignVideo() {
   const [open, setOpen] = useState(false)
+  const { setNewsletterOpen } = useStore()
 
   return (
-    <section className="relative h-[70vh] md:h-[90vh] overflow-hidden bg-charcoal">
-      <img
-        src={sonaPankh2}
-        alt="Israaya in motion"
-        className="absolute inset-0 w-full h-full object-cover opacity-70"
-      />
-      <div className="absolute inset-0 bg-charcoal/40" />
+    <section className="relative bg-ivory overflow-hidden">
+      {/* Diagonal-framed cinematic band — referencing House On The Clouds' "Soul + Cinema" section */}
+      <div
+        className="relative bg-charcoal"
+        style={{ clipPath: 'polygon(0 7%, 100% 0%, 100% 93%, 0% 100%)' }}
+      >
+        <img
+          src={reelImage}
+          alt="Israaya in motion"
+          className="absolute inset-0 w-full h-full object-cover grayscale contrast-[1.05]"
+        />
+        <div className="absolute inset-0 bg-gradient-to-b from-charcoal/75 via-charcoal/45 to-charcoal/75" />
 
-      <div className="relative h-full flex flex-col items-center justify-center gap-8">
-        <RevealText as="h2" className="font-display text-softwhite text-[11vw] md:text-[4.5vw] text-center leading-none tracking-tight">
-          Israaya
-          <br />
-          <span className="italic">in Motion</span>
-        </RevealText>
+        <div className="relative flex flex-col items-center text-center px-6 py-28 md:py-40">
+          <RevealText className="text-[10px] tracking-label uppercase text-softwhite/60 mb-6">
+            @{INSTAGRAM_HANDLE}
+          </RevealText>
 
-        <button
-          onClick={() => setOpen(true)}
-          className="w-16 h-16 md:w-20 md:h-20 rounded-full border border-softwhite/60 flex items-center justify-center hover:bg-softwhite/10 transition-colors duration-500"
-          aria-label="Play campaign video"
-          data-cursor="Play"
-        >
-          <Play size={20} strokeWidth={1.2} className="text-softwhite ml-1" />
-        </button>
+          <RevealText
+            as="h2"
+            delay={0.1}
+            className="font-display text-softwhite text-[11vw] md:text-[4.2vw] leading-none tracking-tight"
+          >
+            Israaya
+          </RevealText>
+
+          <RevealText
+            delay={0.2}
+            className="font-display italic text-softwhite/80 text-sm md:text-lg max-w-xl mt-8 leading-relaxed"
+          >
+            Every collection has its own rhythm, and so do our films. Chapter after
+            chapter, we set out to capture Israaya not as garments but as living
+            stories — moments of craft, culture and quiet elegance, carried from
+            India to the rest of the world.
+          </RevealText>
+        </div>
       </div>
 
       <AnimatePresence>
@@ -52,12 +72,14 @@ export default function CampaignVideo() {
               initial={{ scale: 0.92, opacity: 0 }}
               animate={{ scale: 1, opacity: 1 }}
               transition={{ duration: 0.5, ease: [0.25, 1, 0.5, 1] }}
-              className="w-full max-w-4xl aspect-video bg-charcoal border border-softwhite/10 flex items-center justify-center"
+              className="w-full max-w-sm aspect-[9/16] bg-charcoal border border-softwhite/10 flex items-center justify-center overflow-hidden rounded-2xl"
             >
+              {/* Replace with an embedded Instagram reel (blockquote embed) once the
+                  live reel URL from @israayaindiaofficial is available. */}
               <img
-                src={sonaPankh2}
+                src={reelImage}
                 alt="Campaign placeholder"
-                className="w-full h-full object-cover"
+                className="w-full h-full object-cover grayscale"
               />
             </motion.div>
           </motion.div>

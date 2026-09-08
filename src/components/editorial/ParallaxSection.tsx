@@ -1,6 +1,8 @@
 import { useRef } from 'react'
 import { motion, useScroll, useTransform } from 'framer-motion'
-import sonaPankh1 from '@/assets/products/sona-pankh-1.png'
+import { siteImages } from '@/data/imageManifest'
+
+const parallaxImage = siteImages[42]
 
 export default function ParallaxSection() {
   const ref = useRef<HTMLDivElement>(null)
@@ -16,8 +18,8 @@ export default function ParallaxSection() {
     <section ref={ref} className="relative h-[80vh] md:h-[100vh] overflow-hidden bg-charcoal">
       <motion.div style={{ y, scale }} className="absolute inset-0">
         <img
-          src={sonaPankh1}
-          alt="Israaya campaign — Sona Pankh"
+          src={parallaxImage}
+          alt="Israaya campaign"
           className="w-full h-full object-cover object-top"
         />
         <div className="absolute inset-0 bg-charcoal/30" />

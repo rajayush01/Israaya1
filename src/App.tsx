@@ -7,6 +7,7 @@ import Header from '@/components/layout/Header'
 import Footer from '@/components/layout/Footer'
 import CartDrawer from '@/components/shop/CartDrawer'
 import SearchOverlay from '@/components/shop/SearchOverlay'
+import NewsletterPopup from '@/components/shop/NewsletterPopup'
 import CustomCursor from '@/components/ui/CustomCursor'
 import Loader from '@/components/ui/Loader'
 
@@ -85,6 +86,7 @@ function App() {
       <Footer />
       <CartDrawer />
       <SearchOverlay />
+      <NewsletterPopup />
     </div>
   )
 }

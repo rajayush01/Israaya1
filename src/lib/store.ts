@@ -12,12 +12,14 @@ type Store = {
   wishlist: string[]
   isCartOpen: boolean
   isSearchOpen: boolean
+  isNewsletterOpen: boolean
   addToCart: (product: Product, size: string) => void
   removeFromCart: (id: string, size: string) => void
   updateQuantity: (id: string, size: string, quantity: number) => void
   toggleWishlist: (id: string) => void
   setCartOpen: (open: boolean) => void
   setSearchOpen: (open: boolean) => void
+  setNewsletterOpen: (open: boolean) => void
 }
 
 export const useStore = create<Store>((set) => ({
@@ -25,6 +27,7 @@ export const useStore = create<Store>((set) => ({
   wishlist: [],
   isCartOpen: false,
   isSearchOpen: false,
+  isNewsletterOpen: false,
   addToCart: (product, size) =>
     set((state) => {
       const existing = state.cart.find(
@@ -61,4 +64,5 @@ export const useStore = create<Store>((set) => ({
     })),
   setCartOpen: (open) => set({ isCartOpen: open }),
   setSearchOpen: (open) => set({ isSearchOpen: open }),
+  setNewsletterOpen: (open) => set({ isNewsletterOpen: open }),
 }))
