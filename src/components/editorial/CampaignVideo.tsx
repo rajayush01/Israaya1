@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import { AnimatePresence, motion } from 'framer-motion'
-import { Play, X } from 'lucide-react'
+import { X } from 'lucide-react'
 import RevealText from '@/components/ui/RevealText'
 // import InstagramIcon from '@/components/ui/InstagramIcon'
 // import { useStore } from '@/lib/store'
