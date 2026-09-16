@@ -1,4 +1,21 @@
-import { siteImages } from './imageManifest'
+import komalTara1 from '../assets/products/komal-tara-1.png'
+import komalTara2 from '../assets/products/komal-tara-2.png'
+import sonaPankh1 from '../assets/products/sona-pankh-1.png'
+import sonaPankh2 from '../assets/products/sona-pankh-2.png'
+import hansa1 from '../assets/products/WhatsApp Image 2026-09-10 at 17.59.25 (3).jpeg'
+import hansa2 from '../assets/products/WhatsApp Image 2026-09-10 at 17.59.25 (6).jpeg'
+import hansa3 from '../assets/products/WhatsApp Image 2026-09-10 at 17.59.26 (4).jpeg'
+import hansa4 from '../assets/products/WhatsApp Image 2026-09-10 at 17.59.26 (18).jpeg'
+import madhura1 from '../assets/products/WhatsApp Image 2026-09-10 at 17.59.24.jpeg'
+import madhura2 from '../assets/products/WhatsApp Image 2026-09-10 at 17.59.25 (4).jpeg'
+import madhura3 from '../assets/products/WhatsApp Image 2026-09-10 at 17.59.23 (2).jpeg'
+import sitaraChandni1 from '../assets/products/WhatsApp Image 2026-09-10 at 17.59.25 (2).jpeg'
+import sitaraChandni2 from '../assets/products/WhatsApp Image 2026-09-10 at 17.59.23.jpeg'
+import sitaraChandni3 from '../assets/products/WhatsApp Image 2026-09-10 at 17.59.25 (5).jpeg'
+import sitaraChandni4 from '../assets/products/WhatsApp Image 2026-09-10 at 17.59.21.jpeg'
+import kamal1 from '../assets/products/WhatsApp Image 2026-09-10 at 17.59.24 (2).jpeg'
+import kamal2 from '../assets/products/WhatsApp Image 2026-09-10 at 17.59.23 (1).jpeg'
+import kamal3 from '../assets/products/WhatsApp Image 2026-09-10 at 17.59.25 (1).jpeg'
 
 export type Product = {
   id: string
@@ -31,7 +48,7 @@ export const products: Product[] = [
     fabric: 'Kurta — satin, Dupatta — satin with embroidered border, Bottom — satin dhoti pants',
     craft: 'Hand-worked dori embroidery and pearl work, swan and garden motifs',
     fit: 'Three-piece dhoti set — kurta, dupatta, dhoti pants. Sizes XS–7XL, custom on request',
-    images: siteImages.slice(0, 7),
+    images: [hansa1, hansa2, hansa3, hansa4],
     category: 'sets',
     isNew: true,
   },
@@ -48,7 +65,7 @@ export const products: Product[] = [
     fabric: 'Kurta — pure Chanderi, Dupatta — Chanderi with embroidered border, Bottom — Chanderi sharara',
     craft: 'White and silver dori hand work with pearl embellishment, lotus motif',
     fit: 'Three-piece sharara set — kurta, dupatta, sharara. Sizes XS–7XL, custom on request',
-    images: siteImages.slice(7, 14),
+    images: [madhura1, madhura2, madhura3],
     category: 'sets',
   },
   {
@@ -64,7 +81,7 @@ export const products: Product[] = [
     fabric: 'Kurta — pure Chanderi, Dupatta — Chanderi with embroidered border, Bottom — Chanderi pants',
     craft: 'Silver zardozi hand embroidery, floral and animal motifs at yoke and sleeves',
     fit: 'Three-piece Anarkali set. Sizes XS–6XL, custom on request',
-    images: siteImages.slice(14, 21),
+    images: [sitaraChandni1, sitaraChandni2, sitaraChandni3, sitaraChandni4],
     category: 'occasionwear',
     isNew: true,
   },
@@ -81,7 +98,7 @@ export const products: Product[] = [
     fabric: 'Kurta — silk, Dupatta — organza (ombre), Bottom — silk farsi salwar',
     craft: 'Organza patchwork butterfly and floral motifs, hand-placed beadwork',
     fit: 'Three-piece Farsi suit set — short kurta, farsi salwar, dupatta. Sizes XS–6XL, custom on request',
-    images: siteImages.slice(21, 28),
+    images: [kamal1, kamal2, kamal3],
     category: 'sets',
   },
   {
@@ -97,7 +114,7 @@ export const products: Product[] = [
     fabric: 'Kurta — silk, Dupatta — silk (heavily hand embroidered), Bottom — silk farsi salwar',
     craft: 'All-over hand embroidery — resham thread, pearls and sequins, trees and birds motif',
     fit: 'Three-piece Farsi suit set — kurta, dupatta, salwar. Sizes XS–6XL, custom on request',
-    images: siteImages.slice(28, 35),
+    images: [sonaPankh1, sonaPankh2],
     category: 'sets',
   },
   {
@@ -113,7 +130,7 @@ export const products: Product[] = [
     fabric: 'Kurta — silk, Dupatta — silk (textured), Bottom — silk pants',
     craft: 'Resham thread and sequin embroidery at neckline and front split',
     fit: 'Three-piece suit set — kurta, dupatta, pants. Sizes XS–6XL, custom on request',
-    images: siteImages.slice(35, 42),
+    images: [komalTara1, komalTara2],
     category: 'sets',
     isNew: true,
   },

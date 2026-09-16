@@ -4,9 +4,9 @@ import { X } from 'lucide-react'
 import RevealText from '@/components/ui/RevealText'
 // import InstagramIcon from '@/components/ui/InstagramIcon'
 // import { useStore } from '@/lib/store'
-import { siteImages } from '@/data/imageManifest'
+import reelSource from '@/assets/products/WhatsApp Image 2026-09-10 at 17.59.25 (6).jpeg'
 
-const reelImage = siteImages[30]
+const reelImage = reelSource
 const INSTAGRAM_HANDLE = 'israayaindiaofficial'
 // const INSTAGRAM_URL = `https://www.instagram.com/${INSTAGRAM_HANDLE}/`
 

@@ -1,8 +1,8 @@
 import { motion } from 'framer-motion'
 import { ArrowRight } from 'lucide-react'
-import { siteImages } from '@/data/imageManifest'
+import heroSource from '@/assets/products/WhatsApp Image 2026-09-10 at 17.59.26 (4).jpeg'
 
-const heroImage = siteImages[43]
+const heroImage = heroSource
 
 const ease = [0.25, 1, 0.5, 1] as const
 
