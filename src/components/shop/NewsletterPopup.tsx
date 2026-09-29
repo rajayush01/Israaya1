@@ -2,9 +2,9 @@ import { useState } from 'react'
 import { AnimatePresence, motion } from 'framer-motion'
 import { X } from 'lucide-react'
 import { useStore } from '@/lib/store'
-import popupSource from '@/assets/products/WhatsApp Image 2026-09-10 at 17.59.24 (2).jpeg'
+import { siteImages } from '@/data/images'
 
-const popupImage = popupSource
+const popupImage = siteImages.newsletter
 
 export default function NewsletterPopup() {
   const { isNewsletterOpen, setNewsletterOpen } = useStore()

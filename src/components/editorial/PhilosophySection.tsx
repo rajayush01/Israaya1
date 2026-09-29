@@ -1,7 +1,7 @@
 import RevealText from '@/components/ui/RevealText'
-import philosophySource from '@/assets/products/WhatsApp Image 2026-09-10 at 17.59.25 (2).jpeg'
+import { siteImages } from '@/data/images'
 
-const philosophyImage = philosophySource
+const philosophyImage = siteImages.philosophy
 
 export default function PhilosophySection() {
   return (

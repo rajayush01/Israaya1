@@ -1,8 +1,8 @@
 import { useRef } from 'react'
 import { motion, useScroll, useTransform } from 'framer-motion'
-import parallaxSource from '@/assets/products/WhatsApp Image 2026-09-10 at 17.59.23 (1).jpeg'
+import { siteImages } from '@/data/images'
 
-const parallaxImage = parallaxSource
+const parallaxImage = siteImages.parallax
 
 export default function ParallaxSection() {
   const ref = useRef<HTMLDivElement>(null)

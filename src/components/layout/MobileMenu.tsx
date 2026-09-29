@@ -1,6 +1,7 @@
 import { Link } from 'react-router-dom'
 import { motion } from 'framer-motion'
 import { X } from 'lucide-react'
+import { siteImages } from '@/data/images'
 
 const links = [
   { label: 'Shop', to: '/shop' },
@@ -21,8 +22,7 @@ export default function MobileMenu({ onClose }: { onClose: () => void }) {
       <div
         className="absolute inset-0 opacity-30 bg-cover bg-center"
         style={{
-          backgroundImage:
-            "url('https://images.unsplash.com/photo-1610030181087-540f31c5f2bd?q=80&w=1200&auto=format&fit=crop')",
+          backgroundImage: `url('${siteImages.menuBackground}')`,
         }}
       />
       <div className="relative h-full flex flex-col">

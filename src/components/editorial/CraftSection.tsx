@@ -1,10 +1,9 @@
 import RevealText from '@/components/ui/RevealText'
 import SectionLabel from '@/components/ui/SectionLabel'
-import craftLargeSource from '@/assets/products/WhatsApp Image 2026-09-10 at 17.59.25 (3).jpeg'
-import craftSmallSource from '@/assets/products/WhatsApp Image 2026-09-10 at 17.59.26 (4).jpeg'
+import { siteImages } from '@/data/images'
 
-const craftImageLarge = craftLargeSource
-const craftImageSmall = craftSmallSource
+const craftImageLarge = siteImages.craftLarge
+const craftImageSmall = siteImages.craftSmall
 
 export default function CraftSection() {
   return (
