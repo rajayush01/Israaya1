@@ -20,7 +20,7 @@ export default function ParallaxSection() {
         <img
           src={parallaxImage}
           alt="Israaya campaign"
-          className="w-full h-full object-cover object-top"
+        className="w-full h-full object-cover object-center"
         />
         <div className="absolute inset-0 bg-charcoal/30" />
       </motion.div>

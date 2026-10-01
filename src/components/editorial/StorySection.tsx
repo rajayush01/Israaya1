@@ -21,7 +21,7 @@ export default function StorySection() {
                 <img
                   src={story.image}
                   alt={story.title}
-                  className="w-full h-[420px] object-cover object-top transition-transform duration-[1200ms] ease-out group-hover:scale-105"
+                  className="w-full h-[420px] object-cover object-[50%_67%] transition-transform duration-[1200ms] ease-out group-hover:scale-105"
                 />
               </div>
               <p className="text-[10px] tracking-label uppercase text-brown/50 mt-5 mb-2">

@@ -57,18 +57,18 @@ export default function InstagramGrid() {
               <button
                 type="button"
                 onClick={() => setActiveImg(img)}
-                className={`relative overflow-hidden w-full text-left ${
-                  i === 0
-                    ? 'h-[380px] md:h-[520px]'
-                    : 'h-[180px] md:h-[250px]'
-                }`}
+              className={`relative overflow-hidden w-full text-left ${
+  i === 0 
+    ? 'h-[480px] md:h-[680px]' 
+    : 'h-[240px] md:h-[330px]' 
+}`}
                 aria-label="Open Israaya post"
                 data-cursor="View"
               >
                 <img
                   src={img}
                   alt={`Israaya Instagram post ${i + 1}`}
-                  className="w-full h-full object-cover object-top transition-transform duration-[1200ms] ease-out group-hover:scale-105"
+                  className="w-full h-full object-cover object-[50%_50%] transition-transform duration-[1200ms] ease-out group-hover:scale-105"
                 />
 
                 <div className="absolute inset-0 bg-charcoal/0 group-hover:bg-charcoal/40 transition-colors duration-500 flex items-center justify-center">

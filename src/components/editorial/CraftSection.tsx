@@ -21,33 +21,36 @@ export default function CraftSection() {
           Every piece begins with the hands that make it.
         </RevealText>
 
-        <div className="grid md:grid-cols-12 gap-4 md:gap-5 mt-16">
-          <RevealText delay={0.1} className="md:col-span-7">
-            <img
-              src={craftImageLarge}
-              alt="Hand embroidery detail"
-              className="w-full h-[380px] md:h-[540px] object-cover object-top"
-            />
-          </RevealText>
+    <div className="grid md:grid-cols-12 gap-4 md:gap-5 mt-16">
+  <RevealText delay={0.1} className="md:col-span-8">
+    <img
+      src={craftImageLarge}
+      alt="Hand embroidery detail"
+      className="w-full h-[500px] md:h-[680px] object-cover object-center"
+    />
+  </RevealText>
 
-          <div className="md:col-span-5 flex flex-col justify-between gap-8">
-            <RevealText delay={0.2}>
-              <img
-                src={craftImageSmall}
-                alt="Fabric detail"
-                className="w-full h-[350px] object-cover"
-              />
-            </RevealText>
+  <div className="md:col-span-4 flex flex-col justify-between gap-8">
+    <RevealText delay={0.2}>
+      <img
+        src={craftImageSmall}
+        alt="Fabric detail"
+        className="w-full h-[420px] md:h-[480px] object-cover object-center"
+      />
+    </RevealText>
 
-            <RevealText delay={0.3} className="text-brown/80 leading-relaxed text-sm md:text-base max-w-sm">
-              Resham thread, silver pearls and hand-placed sequins — each
-              motif worked without repetition, so that no two pieces catch
-              the light in quite the same way. Our karigars spend weeks on a
-              single dupatta, embroidering by hand across looms passed down
-              through generations of Indian craftsmanship.
-            </RevealText>
-          </div>
-        </div>
+    <RevealText
+      delay={0.3}
+      className="text-brown/80 leading-relaxed text-sm md:text-base max-w-sm"
+    >
+      Resham thread, silver pearls and hand-placed sequins — each motif
+      worked without repetition, so that no two pieces catch the light in
+      quite the same way. Our karigars spend weeks on a single dupatta,
+      embroidering by hand across looms passed down through generations of
+      Indian craftsmanship.
+    </RevealText>
+  </div>
+</div>
       </div>
     </section>
   )
