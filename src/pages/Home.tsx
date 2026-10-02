@@ -1,7 +1,7 @@
 import Hero from '@/components/hero/Hero'
 import BrandIntro from '@/components/editorial/BrandIntro'
 import FeaturedCollection from '@/components/editorial/FeaturedCollection'
-import ProductGrid from '@/components/products/ProductGrid'
+// import ProductGrid from '@/components/products/ProductGrid'
 import CraftSection from '@/components/editorial/CraftSection'
 import ParallaxSection from '@/components/editorial/ParallaxSection'
 import StorySection from '@/components/editorial/StorySection'

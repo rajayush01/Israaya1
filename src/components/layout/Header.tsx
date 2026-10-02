@@ -4,6 +4,7 @@ import { motion, AnimatePresence } from 'framer-motion'
 import { Search, User, ShoppingBag, Menu } from 'lucide-react'
 import { useStore } from '@/lib/store'
 import MobileMenu from './MobileMenu'
+import logo from '@/assets/ISRAAYA LOGO.svg'
 
 export default function Header() {
   const [scrolled, setScrolled] = useState(false)
@@ -34,11 +35,11 @@ export default function Header() {
         transition={{ duration: 1.2, delay: 0.6, ease: [0.25, 1, 0.5, 1] }}
         className={`fixed top-0 inset-x-0 z-50 transition-all duration-500 ${
           showTransparent
-            ? 'bg-transparent py-7'
-            : 'bg-ivory/90 backdrop-blur-md border-b border-charcoal/5 py-4'
+            ? 'bg-transparent'
+            : 'bg-ivory/90 backdrop-blur-md border-b border-charcoal/5'
         }`}
       >
-        <div className="max-w-[1600px] mx-auto px-6 md:px-10 grid grid-cols-3 items-center">
+        <div className="max-w-[1600px] mx-auto px-6 md:px-10 grid grid-cols-3 items-center ">
           <nav className={`hidden md:flex gap-8 text-xs tracking-label uppercase ${textColor}`}>
             <Link to="/shop" className="underline-reveal">Shop</Link>
             <Link to="/collections" className="underline-reveal">Collections</Link>
@@ -59,7 +60,7 @@ export default function Header() {
             to="/"
             className={`justify-self-center font-display text-2xl tracking-[0.15em] ${textColor}`}
           >
-            ISRAAYA
+            <img src={logo} alt="Israaya Logo" className="w-32 h-24" />
           </Link>
 
           <div className={`flex items-center justify-end gap-6 ${textColor}`}>

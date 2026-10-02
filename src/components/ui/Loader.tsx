@@ -1,5 +1,7 @@
 import { useEffect, useState } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
+import logo from '@/assets/ISRAAYA LOGO.svg'
+import logo1 from '@/assets/ISRAAYA MOTIF.svg'
 
 export default function Loader({ onDone }: { onDone: () => void }) {
   const [progress, setProgress] = useState(0)
@@ -33,10 +35,8 @@ export default function Loader({ onDone }: { onDone: () => void }) {
           transition={{ duration: 0.7, ease: [0.25, 1, 0.5, 1] }}
           className="fixed inset-0 z-[200] bg-charcoal flex flex-col items-center justify-center"
         >
-          <p className="font-display text-softwhite text-4xl tracking-[0.2em] mb-3">ISRAAYA</p>
-          <p className="text-[10px] tracking-label uppercase text-softwhite/50 mb-8">
-            Modern Indianwear
-          </p>
+          <img src={logo1} alt="Israaya Logo" className="w-32 h-24" />
+          <img src={logo} alt="Israaya Logo" className="w-32 h-24" />
           <div className="w-40 h-px bg-softwhite/20 overflow-hidden">
             <motion.div
               style={{ width: `${progress * 100}%` }}
