@@ -17,7 +17,7 @@ export default function Home() {
       <Marquee text="ISRAAYA · MODERN INDIANWEAR · ROOTED IN CRAFT · MADE IN INDIA · WORN AROUND THE WORLD ·" />
       <BrandIntro />
       <FeaturedCollection />
-      <ProductGrid />
+      {/* <ProductGrid /> */}
       <CraftSection />
       <ParallaxSection />
       <StorySection />

@@ -18,7 +18,7 @@ export default function Hero() {
         <img
           src={heroImage}
           alt="Israaya — Nikhaar collection"
-          className="w-full h-full object-cover object-[center_15%]"
+          className="w-full h-full object-cover object-[center_50%]"
         />
         <div className="absolute inset-0 bg-gradient-to-t from-charcoal/70 via-charcoal/10 to-charcoal/30" />
       </motion.div>
