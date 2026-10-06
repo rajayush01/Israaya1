@@ -25,7 +25,7 @@ export default function ProductCard({
           <img loading="eager" decoding="async"
             src={product.images[1]}
             alt=""
-            className="absolute inset-0 w-full h-full object-cover object-top opacity-0 scale-105 transition-[transform,opacity] duration-[1100ms] ease-out group-hover:opacity-100 group-hover:scale-100"
+            className="absolute inset-0 w-full h-[90%] object-contain object-top opacity-0 scale-105 transition-[transform,opacity] duration-[1100ms] ease-out group-hover:opacity-100 group-hover:scale-100"
           />
         )}
         {product.isNew && (
