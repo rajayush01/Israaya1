@@ -46,8 +46,8 @@ export default function InstagramGrid() {
 
         {/* Instagram Grid */}
         <div className="grid grid-cols-2 md:grid-cols-3 gap-3 md:gap-4">
-          {socialGrid.map((img, i) => (
-            <RevealText
+{socialGrid.slice(0, 3).map((img, i) => (
+              <RevealText
               key={img}
               delay={(i % 3) * 0.06}
               className={`group relative overflow-hidden ${

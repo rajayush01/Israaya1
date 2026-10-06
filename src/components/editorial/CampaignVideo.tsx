@@ -16,7 +16,7 @@ export default function CampaignVideo() {
   // const { setNewsletterOpen } = useStore()
 
   return (
-    <section className="relative bg-ivory overflow-hidden">
+    <section className="relative bg-cream overflow-hidden">
       {/* Diagonal-framed cinematic band — referencing House On The Clouds' "Soul + Cinema" section */}
       <div
         className="relative bg-charcoal"

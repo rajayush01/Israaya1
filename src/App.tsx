@@ -9,7 +9,7 @@ import Footer from '@/components/layout/Footer'
 import CartDrawer from '@/components/shop/CartDrawer'
 import SearchOverlay from '@/components/shop/SearchOverlay'
 import NewsletterPopup from '@/components/shop/NewsletterPopup'
-import CustomCursor from '@/components/ui/CustomCursor'
+// import CustomCursor from '@/components/ui/CustomCursor'
 import Loader from '@/components/ui/Loader'
 
 import Home from '@/pages/Home'
@@ -72,7 +72,7 @@ function App() {
   return (
     <div className="grain">
       {loading && <Loader ready={assetsReady} onDone={() => setLoading(false)} />}
-      <CustomCursor />
+      {/* <CustomCursor /> */}
       <Header />
       <main>
         <AnimatedRoutes />
