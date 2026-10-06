@@ -14,7 +14,7 @@ export default function Stories() {
           <RevealText key={s.slug} delay={(i % 2) * 0.1}>
             <Link to={`/stories/${s.slug}`} className="group block cursor-pointer">
               <div className="overflow-hidden mb-5">
-                <img
+                <img loading="eager" decoding="async"
                   src={s.image}
                   alt={s.title}
                   className="w-full h-[440px] object-cover object-top transition-transform duration-[1200ms] ease-out group-hover:scale-105"

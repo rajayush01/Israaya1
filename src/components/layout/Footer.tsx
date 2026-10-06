@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import InstagramIcon from '@/components/ui/InstagramIcon'
-import RevealText from '@/components/ui/RevealText'
-import logo from '@/assets/ISRAAYA LOGO.svg'
+// import RevealText from '@/components/ui/RevealText'
+// import logo from '@/assets/ISRAAYA LOGO.svg'
 
 export default function Footer() {
   const [email, setEmail] = useState('')
@@ -10,9 +10,9 @@ export default function Footer() {
   return (
     <footer className="bg-charcoal text-softwhite pt-24 pb-8">
       <div className="max-w-[1600px] mx-auto px-6 md:px-10">
-        <RevealText as="h2" className="font-display text-[14vw] md:text-[8vw] leading-none tracking-tight text-softwhite/95 mb-16">
-          <img src={logo} alt="Israaya Logo" className="w-full h-full object-contain" />
-        </RevealText>
+        {/* <RevealText as="h2" className="font-display text-[14vw] md:text-[8vw] leading-none tracking-tight text-softwhite/95 mb-16">
+          <img loading="eager" decoding="async" src={logo} alt="Israaya Logo" className="w-full h-full object-contain" />
+        </RevealText> */}
 
         <div className="grid grid-cols-2 md:grid-cols-5 gap-10 md:gap-6 pb-16 border-b border-softwhite/10">
           <FooterCol title="Shop" items={['Nikhaar Collection', 'All Products']} />

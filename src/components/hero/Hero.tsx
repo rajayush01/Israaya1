@@ -1,4 +1,4 @@
-import { motion } from 'framer-motion'
+import { m } from 'framer-motion'
 import { ArrowRight } from 'lucide-react'
 import { siteImages } from '@/data/images'
 
@@ -9,31 +9,32 @@ const ease = [0.25, 1, 0.5, 1] as const
 export default function Hero() {
   return (
     <section className="relative h-[100svh] w-full overflow-hidden bg-charcoal">
-      <motion.div
-        initial={{ opacity: 0, scale: 1.08 }}
+      <m.div
+        initial={{ opacity: 0, scale: 1.04 }}
         animate={{ opacity: 1, scale: 1 }}
-        transition={{ duration: 2.4, ease }}
+        transition={{ duration: 1.8, ease }}
         className="absolute inset-0"
       >
-        <img
+        <img loading="eager" decoding="async"
           src={heroImage}
+          fetchPriority="high"
           alt="Israaya — Nikhaar collection"
           className="w-full h-full object-cover object-[center_50%]"
         />
         <div className="absolute inset-0 bg-gradient-to-t from-charcoal/70 via-charcoal/10 to-charcoal/30" />
-      </motion.div>
+      </m.div>
 
       <div className="relative h-full max-w-[1600px] mx-auto px-6 md:px-10 flex flex-col justify-end pb-20 md:pb-24">
-        <motion.p
+        <m.p
           initial={{ opacity: 0, y: 12 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 1.1, duration: 1, ease }}
           className="text-xs md:text-sm tracking-label uppercase text-softwhite/70 mb-5"
         >
           Nikhaar · Chapter I
-        </motion.p>
+        </m.p>
 
-        <motion.h1
+        <m.h1
           initial={{ opacity: 0, y: 28 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 1.3, duration: 1.3, ease }}
@@ -42,9 +43,9 @@ export default function Hero() {
           Modern Indianwear,
           <br />
           <span className="italic text-champagne">Rooted in Craft.</span>
-        </motion.h1>
+        </m.h1>
 
-        <motion.div
+        <m.div
           initial={{ opacity: 0, y: 16 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 1.9, duration: 1, ease }}
@@ -62,10 +63,10 @@ export default function Hero() {
               className="transition-transform duration-500 group-hover:translate-x-1.5"
             />
           </a>
-        </motion.div>
+        </m.div>
       </div>
 
-      <motion.div
+      <m.div
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ delay: 2.4, duration: 1 }}
@@ -75,13 +76,13 @@ export default function Hero() {
           Scroll to Discover
         </span>
         <span className="w-px h-10 bg-softwhite/40 relative overflow-hidden">
-          <motion.span
+          <m.span
             animate={{ y: ['-100%', '100%'] }}
             transition={{ repeat: Infinity, duration: 2, ease: 'easeInOut' }}
             className="absolute inset-0 bg-champagne"
           />
         </span>
-      </motion.div>
+      </m.div>
     </section>
   )
 }

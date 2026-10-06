@@ -26,7 +26,7 @@ export default function FeaturedCollection() {
         {featured.map((p, i) => (
           <RevealText key={p.id} delay={i * 0.1} className="flex flex-col gap-4">
             <Link to={`/product/${p.id}`} className="block overflow-hidden group aspect-[3/4]">
-              <img
+              <img loading="eager" decoding="async"
                 src={p.images[0]}
                 alt={p.name}
                 className="w-full h-full object-cover object-top transition-transform duration-[1400ms] ease-out group-hover:scale-105"

@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { AnimatePresence, motion } from 'framer-motion'
+import { AnimatePresence, m } from 'framer-motion'
 import { X } from 'lucide-react'
 import { useStore } from '@/lib/store'
 import { siteImages } from '@/data/images'
@@ -20,15 +20,15 @@ export default function NewsletterPopup() {
   return (
     <AnimatePresence>
       {isNewsletterOpen && (
-        <motion.div
+        <m.div
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           exit={{ opacity: 0 }}
           transition={{ duration: 0.4 }}
-          className="fixed inset-0 z-[110] bg-charcoal/50 backdrop-blur-sm flex items-center justify-center p-4 md:p-6"
+          className="fixed inset-0 z-[110] bg-charcoal/60 flex items-center justify-center p-4 md:p-6"
           onClick={close}
         >
-          <motion.div
+          <m.div
             initial={{ opacity: 0, scale: 0.94, y: 12 }}
             animate={{ opacity: 1, scale: 1, y: 0 }}
             exit={{ opacity: 0, scale: 0.96, y: 8 }}
@@ -38,14 +38,14 @@ export default function NewsletterPopup() {
           >
             <button
               onClick={close}
-              className="absolute top-4 right-4 z-10 text-charcoal md:text-softwhite mix-blend-difference"
+              className="absolute top-4 right-4 z-10 text-charcoal md:text-softwhite"
               aria-label="Close"
             >
               <X size={22} strokeWidth={1.3} />
             </button>
 
             <div className="hidden md:block h-full">
-              <img
+              <img loading="eager" decoding="async"
                 src={popupImage}
                 alt="Israaya India"
                 className="w-full h-full object-cover object-top"
@@ -93,8 +93,8 @@ export default function NewsletterPopup() {
                 </form>
               )}
             </div>
-          </motion.div>
-        </motion.div>
+          </m.div>
+        </m.div>
       )}
     </AnimatePresence>
   )

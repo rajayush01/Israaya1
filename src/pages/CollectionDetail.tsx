@@ -15,7 +15,7 @@ export default function CollectionDetail() {
   return (
     <div className="pt-24 md:pt-28">
       <section className="relative h-[70vh] md:h-[90vh] overflow-hidden bg-charcoal">
-        <img
+        <img loading="eager" decoding="async"
           src={collection.image}
           alt={collection.name}
           className="absolute inset-0 w-full h-full object-cover object-top opacity-80"

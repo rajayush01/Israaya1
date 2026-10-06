@@ -13,7 +13,7 @@ export default function Collections() {
         {collections.map((c, i) => (
           <RevealText key={c.slug} delay={i * 0.1} className="grid md:grid-cols-2 gap-8 items-center">
             <Link to={`/collections/${c.slug}`} className={`block overflow-hidden group ${i % 2 === 1 ? 'md:order-2' : ''}`}>
-              <img
+              <img loading="eager" decoding="async"
                 src={c.image}
                 alt={c.name}
                 className="w-full h-[380px] md:h-[480px] object-cover object-top transition-transform duration-[1200ms] ease-out group-hover:scale-105"

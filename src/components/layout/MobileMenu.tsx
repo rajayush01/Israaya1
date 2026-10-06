@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom'
-import { motion } from 'framer-motion'
+import { m } from 'framer-motion'
 import { X } from 'lucide-react'
 import { siteImages } from '@/data/images'
 
@@ -12,7 +12,7 @@ const links = [
 
 export default function MobileMenu({ onClose }: { onClose: () => void }) {
   return (
-    <motion.div
+    <m.div
       initial={{ clipPath: 'inset(0 0 100% 0)' }}
       animate={{ clipPath: 'inset(0 0 0% 0)' }}
       exit={{ clipPath: 'inset(0 0 100% 0)' }}
@@ -37,7 +37,7 @@ export default function MobileMenu({ onClose }: { onClose: () => void }) {
 
         <nav className="flex-1 flex flex-col justify-center px-8 gap-2">
           {links.map((link, i) => (
-            <motion.div
+            <m.div
               key={link.to}
               initial={{ opacity: 0, y: 24 }}
               animate={{ opacity: 1, y: 0 }}
@@ -50,7 +50,7 @@ export default function MobileMenu({ onClose }: { onClose: () => void }) {
               >
                 {link.label}
               </Link>
-            </motion.div>
+            </m.div>
           ))}
         </nav>
 
@@ -58,6 +58,6 @@ export default function MobileMenu({ onClose }: { onClose: () => void }) {
           Made in India. Worn Around the World.
         </div>
       </div>
-    </motion.div>
+    </m.div>
   )
 }

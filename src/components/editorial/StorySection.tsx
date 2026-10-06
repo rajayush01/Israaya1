@@ -18,7 +18,7 @@ export default function StorySection() {
           <RevealText key={story.slug} delay={i * 0.1}>
             <Link to={`/stories/${story.slug}`} className="group block">
               <div className="overflow-hidden">
-                <img
+                <img loading="eager" decoding="async"
                   src={story.image}
                   alt={story.title}
                   className="w-full h-[420px] object-cover object-[50%_67%] transition-transform duration-[1200ms] ease-out group-hover:scale-105"

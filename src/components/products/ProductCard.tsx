@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom'
-import { motion } from 'framer-motion'
+import { m } from 'framer-motion'
 import { ArrowUpRight } from 'lucide-react'
 import type { Product } from '@/data/products'
 
@@ -16,16 +16,16 @@ export default function ProductCard({
   return (
     <Link to={`/product/${product.id}`} className="group block" data-cursor="View">
       <div className={`relative overflow-hidden ${heightClass}`}>
-        <img
+        <img loading="eager" decoding="async"
           src={product.images[0]}
           alt={product.name}
-          className="absolute inset-0 w-full h-full object-cover object-top transition-all duration-[1100ms] ease-out group-hover:scale-105 group-hover:opacity-0"
+          className="absolute inset-0 w-full h-full object-cover object-top transition-[transform,opacity] duration-[1100ms] ease-out group-hover:scale-105 group-hover:opacity-0"
         />
         {product.images[1] && (
-          <img
+          <img loading="eager" decoding="async"
             src={product.images[1]}
             alt=""
-            className="absolute inset-0 w-full h-full object-cover object-top opacity-0 scale-105 transition-all duration-[1100ms] ease-out group-hover:opacity-100 group-hover:scale-100"
+            className="absolute inset-0 w-full h-full object-cover object-top opacity-0 scale-105 transition-[transform,opacity] duration-[1100ms] ease-out group-hover:opacity-100 group-hover:scale-100"
           />
         )}
         {product.isNew && (
@@ -50,13 +50,13 @@ export default function ProductCard({
             )}
           </p>
         </div>
-        <motion.span
+        <m.span
           initial={{ opacity: 0, x: -4 }}
           whileHover={{ opacity: 1, x: 0 }}
           className="hidden md:flex items-center gap-1 text-[10px] tracking-label uppercase opacity-0 group-hover:opacity-100 transition-opacity duration-500 pt-1"
         >
           View Piece <ArrowUpRight size={12} strokeWidth={1.3} />
-        </motion.span>
+        </m.span>
       </div>
     </Link>
   )

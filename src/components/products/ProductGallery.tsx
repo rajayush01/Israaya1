@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { AnimatePresence, motion } from 'framer-motion'
+import { AnimatePresence, m } from 'framer-motion'
 import { ChevronLeft, ChevronRight } from 'lucide-react'
 
 export default function ProductGallery({
@@ -33,7 +33,7 @@ export default function ProductGallery({
               }`}
               aria-label={`View image ${i + 1}`}
             >
-              <img src={img} alt={`${name} thumbnail ${i + 1}`} className="w-full aspect-[3/4] object-cover object-top" />
+              <img loading="eager" decoding="async" src={img} alt={`${name} thumbnail ${i + 1}`} className="w-full aspect-[3/4] object-cover object-top" />
             </button>
           ))}
         </div>
@@ -42,7 +42,7 @@ export default function ProductGallery({
       {/* Sliding main image */}
       <div className="relative flex-1 aspect-[3/4] overflow-hidden bg-champagne/20">
         <AnimatePresence initial={false} custom={direction} mode="popLayout">
-          <motion.img
+          <m.img
             key={index}
             src={images[index]}
             alt={`${name} ${index + 1}`}
@@ -59,14 +59,14 @@ export default function ProductGallery({
           <>
             <button
               onClick={() => goTo(index - 1)}
-              className="absolute left-3 top-1/2 -translate-y-1/2 w-9 h-9 rounded-full bg-ivory/80 backdrop-blur-sm flex items-center justify-center hover:bg-ivory transition-colors"
+              className="absolute left-3 top-1/2 -translate-y-1/2 w-9 h-9 rounded-full bg-ivory/90 flex items-center justify-center hover:bg-ivory transition-colors"
               aria-label="Previous image"
             >
               <ChevronLeft size={16} strokeWidth={1.4} />
             </button>
             <button
               onClick={() => goTo(index + 1)}
-              className="absolute right-3 top-1/2 -translate-y-1/2 w-9 h-9 rounded-full bg-ivory/80 backdrop-blur-sm flex items-center justify-center hover:bg-ivory transition-colors"
+              className="absolute right-3 top-1/2 -translate-y-1/2 w-9 h-9 rounded-full bg-ivory/90 flex items-center justify-center hover:bg-ivory transition-colors"
               aria-label="Next image"
             >
               <ChevronRight size={16} strokeWidth={1.4} />
@@ -77,7 +77,7 @@ export default function ProductGallery({
                 <button
                   key={i}
                   onClick={() => goTo(i)}
-                  className={`h-1 rounded-full transition-all duration-300 ${
+                  className={`h-1 rounded-full transition-[width,background-color] duration-300 ${
                     i === index ? 'w-6 bg-charcoal' : 'w-1.5 bg-charcoal/25'
                   }`}
                   aria-label={`Go to image ${i + 1}`}
@@ -101,7 +101,7 @@ export default function ProductGallery({
               }`}
               aria-label={`View image ${i + 1}`}
             >
-              <img src={img} alt={`${name} thumbnail ${i + 1}`} className="w-full aspect-[3/4] object-cover object-top" />
+              <img loading="eager" decoding="async" src={img} alt={`${name} thumbnail ${i + 1}`} className="w-full aspect-[3/4] object-cover object-top" />
             </button>
           ))}
         </div>

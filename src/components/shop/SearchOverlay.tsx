@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { AnimatePresence, motion } from 'framer-motion'
+import { AnimatePresence, m } from 'framer-motion'
 import { X, Search } from 'lucide-react'
 import { Link } from 'react-router-dom'
 import { useStore } from '@/lib/store'
@@ -30,7 +30,7 @@ export default function SearchOverlay() {
   return (
     <AnimatePresence>
       {isSearchOpen && (
-        <motion.div
+        <m.div
           initial={{ opacity: 0, y: -12 }}
           animate={{ opacity: 1, y: 0 }}
           exit={{ opacity: 0, y: -12 }}
@@ -100,7 +100,7 @@ export default function SearchOverlay() {
                         className="group block text-center"
                       >
                         <div className="overflow-hidden mb-3">
-                          <img
+                          <img loading="eager" decoding="async"
                             src={p.images[0]}
                             alt={p.name}
                             className="w-full aspect-[3/4] object-cover object-top transition-transform duration-[1000ms] ease-out group-hover:scale-105"
@@ -119,7 +119,7 @@ export default function SearchOverlay() {
               </div>
             </div>
           </div>
-        </motion.div>
+        </m.div>
       )}
     </AnimatePresence>
   )

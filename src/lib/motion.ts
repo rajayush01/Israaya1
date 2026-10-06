@@ -29,4 +29,5 @@ export const staggerChild: Variants = {
   show: { opacity: 1, y: 0, transition: { duration: 0.9, ease: easeLux } },
 }
 
-export const viewportOnce = { once: true, margin: '-10% 0px -10% 0px' }
+// positive bottom margin = reveal fires *before* the element enters the screen
+export const viewportOnce = { once: true, margin: '0px 0px 15% 0px' }

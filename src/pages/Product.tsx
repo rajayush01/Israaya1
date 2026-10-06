@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import { useParams, Navigate } from 'react-router-dom'
-import { motion, AnimatePresence } from 'framer-motion'
+import { m, AnimatePresence } from 'framer-motion'
 import { ChevronDown, Heart } from 'lucide-react'
 import { products } from '@/data/products'
 import { useStore } from '@/lib/store'
@@ -124,13 +124,13 @@ export default function Product() {
                   className="w-full flex items-center justify-between py-4 text-sm"
                 >
                   {a.title}
-                  <motion.span animate={{ rotate: open === a.key ? 180 : 0 }}>
+                  <m.span animate={{ rotate: open === a.key ? 180 : 0 }}>
                     <ChevronDown size={15} strokeWidth={1.3} />
-                  </motion.span>
+                  </m.span>
                 </button>
                 <AnimatePresence>
                   {open === a.key && (
-                    <motion.div
+                    <m.div
                       initial={{ height: 0, opacity: 0 }}
                       animate={{ height: 'auto', opacity: 1 }}
                       exit={{ height: 0, opacity: 0 }}
@@ -140,7 +140,7 @@ export default function Product() {
                       <p className="text-sm text-brown/70 pb-4 leading-relaxed">
                         {accordionContent[a.key]}
                       </p>
-                    </motion.div>
+                    </m.div>
                   )}
                 </AnimatePresence>
               </div>

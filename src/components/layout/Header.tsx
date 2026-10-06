@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react'
 import { Link, useLocation } from 'react-router-dom'
-import { motion, AnimatePresence } from 'framer-motion'
+import { m, AnimatePresence } from 'framer-motion'
 import { Search, User, ShoppingBag, Menu } from 'lucide-react'
 import { useStore } from '@/lib/store'
 import MobileMenu from './MobileMenu'
@@ -17,7 +17,7 @@ export default function Header() {
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 60)
     onScroll()
-    window.addEventListener('scroll', onScroll)
+    window.addEventListener('scroll', onScroll, { passive: true })
     return () => window.removeEventListener('scroll', onScroll)
   }, [pathname])
 
@@ -29,14 +29,14 @@ export default function Header() {
 
   return (
     <>
-      <motion.header
+      <m.header
         initial={{ opacity: 0, y: -12 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 1.2, delay: 0.6, ease: [0.25, 1, 0.5, 1] }}
-        className={`fixed top-0 inset-x-0 z-50 transition-all duration-500 ${
+        className={`fixed top-0 inset-x-0 z-50 transition-[background-color,border-color] duration-500 ${
           showTransparent
             ? 'bg-transparent'
-            : 'bg-ivory/90 backdrop-blur-md border-b border-charcoal/5'
+            : 'bg-ivory/95 border-b border-charcoal/5'
         }`}
       >
         <div className="max-w-[1600px] mx-auto px-6 md:px-10 grid grid-cols-3 items-center ">
@@ -60,7 +60,7 @@ export default function Header() {
             to="/"
             className={`justify-self-center font-display text-2xl tracking-[0.15em] ${textColor}`}
           >
-            <img src={logo} alt="Israaya Logo" className="w-32 h-24" />
+            <img loading="eager" decoding="async" src={logo} alt="Israaya Logo" className="w-32 h-24" />
           </Link>
 
           <div className={`flex items-center justify-end gap-6 ${textColor}`}>
@@ -90,7 +90,7 @@ export default function Header() {
             </button>
           </div>
         </div>
-      </motion.header>
+      </m.header>
 
       <AnimatePresence>
         {mobileOpen && <MobileMenu onClose={() => setMobileOpen(false)} />}

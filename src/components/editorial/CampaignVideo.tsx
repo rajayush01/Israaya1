@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { AnimatePresence, motion } from 'framer-motion'
+import { AnimatePresence, m } from 'framer-motion'
 import { X } from 'lucide-react'
 import RevealText from '@/components/ui/RevealText'
 // import InstagramIcon from '@/components/ui/InstagramIcon'
@@ -22,10 +22,10 @@ export default function CampaignVideo() {
         className="relative bg-charcoal"
         style={{ clipPath: 'polygon(0 7%, 100% 0%, 100% 93%, 0% 100%)' }}
       >
-        <img
+        <img loading="eager" decoding="async"
           src={reelImage}
           alt="Israaya in motion"
-          className="absolute inset-0 w-full h-full object-cover grayscale contrast-[1.05]"
+          className="absolute inset-0 w-full h-full object-cover"
         />
         <div className="absolute inset-0 bg-gradient-to-b from-charcoal/75 via-charcoal/45 to-charcoal/75" />
 
@@ -56,7 +56,7 @@ export default function CampaignVideo() {
 
       <AnimatePresence>
         {open && (
-          <motion.div
+          <m.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
@@ -69,7 +69,7 @@ export default function CampaignVideo() {
             >
               <X size={26} strokeWidth={1.2} />
             </button>
-            <motion.div
+            <m.div
               initial={{ scale: 0.92, opacity: 0 }}
               animate={{ scale: 1, opacity: 1 }}
               transition={{ duration: 0.5, ease: [0.25, 1, 0.5, 1] }}
@@ -77,13 +77,13 @@ export default function CampaignVideo() {
             >
               {/* Replace with an embedded Instagram reel (blockquote embed) once the
                   live reel URL from @israayaindiaofficial is available. */}
-              <img
+              <img loading="eager" decoding="async"
                 src={reelImage}
                 alt="Campaign placeholder"
-                className="w-full h-full object-cover grayscale"
+                className="w-full h-full object-cover"
               />
-            </motion.div>
-          </motion.div>
+            </m.div>
+          </m.div>
         )}
       </AnimatePresence>
     </section>

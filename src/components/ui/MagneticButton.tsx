@@ -1,5 +1,5 @@
-import { useRef, useState } from 'react'
-import { motion } from 'framer-motion'
+import { useRef } from 'react'
+import { m, useMotionValue, useSpring } from 'framer-motion'
 
 export default function MagneticButton({
   children,
@@ -13,29 +13,40 @@ export default function MagneticButton({
   strength?: number
 }) {
   const ref = useRef<HTMLButtonElement>(null)
-  const [pos, setPos] = useState({ x: 0, y: 0 })
+  const rect = useRef<DOMRect | null>(null)
+  const x = useMotionValue(0)
+  const y = useMotionValue(0)
+  const springCfg = { stiffness: 150, damping: 12, mass: 0.4 }
+  const sx = useSpring(x, springCfg)
+  const sy = useSpring(y, springCfg)
 
+  // motion values + a cached rect: no React re-render and no layout read per mouse-move
+  const handleEnter = () => {
+    rect.current = ref.current?.getBoundingClientRect() ?? null
+  }
   const handleMove = (e: React.MouseEvent) => {
-    const el = ref.current
-    if (!el) return
-    const rect = el.getBoundingClientRect()
-    const x = (e.clientX - rect.left - rect.width / 2) * strength
-    const y = (e.clientY - rect.top - rect.height / 2) * strength
-    setPos({ x, y })
+    const r = rect.current
+    if (!r) return
+    x.set((e.clientX - r.left - r.width / 2) * strength)
+    y.set((e.clientY - r.top - r.height / 2) * strength)
+  }
+  const handleLeave = () => {
+    x.set(0)
+    y.set(0)
   }
 
   return (
-    <motion.button
+    <m.button
       ref={ref}
       onClick={onClick}
+      onMouseEnter={handleEnter}
       onMouseMove={handleMove}
-      onMouseLeave={() => setPos({ x: 0, y: 0 })}
-      animate={{ x: pos.x, y: pos.y }}
-      transition={{ type: 'spring', stiffness: 150, damping: 12, mass: 0.4 }}
+      onMouseLeave={handleLeave}
+      style={{ x: sx, y: sy }}
       className={className}
       data-cursor="view"
     >
       {children}
-    </motion.button>
+    </m.button>
   )
 }

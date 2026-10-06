@@ -1,19 +1,19 @@
-import { motion } from 'framer-motion'
+import { m } from 'framer-motion'
 import { viewportOnce } from '@/lib/motion'
 
 type Tag = 'div' | 'h1' | 'h2' | 'h3' | 'p' | 'span'
 
 const tagMap = {
-  div: motion.div,
-  h1: motion.h1,
-  h2: motion.h2,
-  h3: motion.h3,
-  p: motion.p,
-  span: motion.span,
+  div: m.div,
+  h1: m.h1,
+  h2: m.h2,
+  h3: m.h3,
+  p: m.p,
+  span: m.span,
 }
 
 const revealVariants = {
-  hidden: { opacity: 0, y: 32 },
+  hidden: { opacity: 0, y: 24 },
   show: { opacity: 1, y: 0 },
 }
 
@@ -36,7 +36,7 @@ export default function RevealText({
       whileInView="show"
       viewport={viewportOnce}
       variants={revealVariants}
-      transition={{ delay, duration: 1.1, ease: [0.25, 1, 0.5, 1] }}
+      transition={{ delay, duration: 0.9, ease: [0.25, 1, 0.5, 1] }}
     >
       {children}
     </MotionTag>

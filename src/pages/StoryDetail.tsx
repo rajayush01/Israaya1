@@ -23,7 +23,7 @@ export default function StoryDetail() {
       </div>
 
       <RevealText className="max-w-[1600px] mx-auto px-6 md:px-10">
-        <img
+        <img loading="eager" decoding="async"
           src={story.image}
           alt={story.title}
           className="w-full h-[60vh] md:h-[85vh] object-cover object-top"
@@ -40,7 +40,7 @@ export default function StoryDetail() {
         {story.images.length > 1 && (
           <RevealText className="grid grid-cols-2 gap-4 my-12">
             {story.images.map((img, i) => (
-              <img key={i} src={img} alt="" className="w-full h-[300px] object-cover object-top" />
+              <img loading="eager" decoding="async" key={i} src={img} alt="" className="w-full h-[300px] object-cover object-top" />
             ))}
           </RevealText>
         )}

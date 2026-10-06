@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { AnimatePresence, motion } from 'framer-motion'
+import { AnimatePresence, m } from 'framer-motion'
 import { X } from 'lucide-react'
 
 import RevealText from '@/components/ui/RevealText'
@@ -65,7 +65,7 @@ export default function InstagramGrid() {
                 aria-label="Open Israaya post"
                 data-cursor="View"
               >
-                <img
+                <img loading="eager" decoding="async"
                   src={img}
                   alt={`Israaya Instagram post ${i + 1}`}
                   className="w-full h-full object-cover object-[50%_50%] transition-transform duration-[1200ms] ease-out group-hover:scale-105"
@@ -110,7 +110,7 @@ export default function InstagramGrid() {
       {/* Image Modal */}
       <AnimatePresence>
         {activeImg && (
-          <motion.div
+          <m.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
@@ -126,7 +126,7 @@ export default function InstagramGrid() {
               <X size={26} strokeWidth={1.2} />
             </button>
 
-            <motion.div
+            <m.div
               initial={{ scale: 0.92, opacity: 0 }}
               animate={{ scale: 1, opacity: 1 }}
               exit={{ scale: 0.92, opacity: 0 }}
@@ -137,7 +137,7 @@ export default function InstagramGrid() {
               className="w-full max-w-sm flex flex-col items-center"
             >
               <div className="w-full aspect-[4/5] bg-charcoal border border-softwhite/10 overflow-hidden rounded-2xl">
-                <img
+                <img loading="eager" decoding="async"
                   src={activeImg}
                   alt="Israaya Instagram post"
                   className="w-full h-full object-cover"
@@ -166,8 +166,8 @@ export default function InstagramGrid() {
                   Subscribe
                 </button>
               </div>
-            </motion.div>
-          </motion.div>
+            </m.div>
+          </m.div>
         )}
       </AnimatePresence>
     </section>

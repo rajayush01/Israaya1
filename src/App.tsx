@@ -1,7 +1,8 @@
 import { useEffect, useState } from 'react'
 import { Routes, Route, useLocation } from 'react-router-dom'
-import { AnimatePresence, motion } from 'framer-motion'
-import Lenis from 'lenis'
+import { AnimatePresence, m } from 'framer-motion'
+import useSmoothScroll from '@/hooks/useSmoothScroll'
+import { preloadCritical, preloadRest } from '@/lib/preload'
 
 import Header from '@/components/layout/Header'
 import Footer from '@/components/layout/Footer'
@@ -22,27 +23,23 @@ import About from '@/pages/About'
 import Contact from '@/pages/Contact'
 
 function PageTransition({ children }: { children: React.ReactNode }) {
+  // Opacity-only: fading a whole page is cheap, translating it forces a huge repaint.
   return (
-    <motion.div
-      initial={{ opacity: 0, y: 16 }}
-      animate={{ opacity: 1, y: 0 }}
-      exit={{ opacity: 0, y: -16 }}
-      transition={{ duration: 0.6, ease: [0.25, 1, 0.5, 1] }}
+    <m.div
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1, transition: { duration: 0.4, ease: [0.25, 1, 0.5, 1] } }}
+      exit={{ opacity: 0, transition: { duration: 0.18, ease: 'easeIn' } }}
     >
       {children}
-    </motion.div>
+    </m.div>
   )
 }
 
 function AnimatedRoutes() {
   const location = useLocation()
 
-  useEffect(() => {
-    window.scrollTo(0, 0)
-  }, [location.pathname])
-
   return (
-    <AnimatePresence mode="wait">
+    <AnimatePresence mode="wait" onExitComplete={() => window.scrollTo(0, 0)}>
       <Routes location={location} key={location.pathname}>
         <Route path="/" element={<PageTransition><Home /></PageTransition>} />
         <Route path="/shop" element={<PageTransition><Shop /></PageTransition>} />
@@ -60,24 +57,21 @@ function AnimatedRoutes() {
 
 function App() {
   const [loading, setLoading] = useState(true)
+  const [assetsReady, setAssetsReady] = useState(false)
+
+  useSmoothScroll()
 
   useEffect(() => {
-    const lenis = new Lenis({ duration: 1.1, easing: (t) => 1 - Math.pow(1 - t, 3) })
-    let frame: number
-    const raf = (time: number) => {
-      lenis.raf(time)
-      frame = requestAnimationFrame(raf)
-    }
-    frame = requestAnimationFrame(raf)
-    return () => {
-      cancelAnimationFrame(frame)
-      lenis.destroy()
-    }
+    // 1) the loader waits for the hero to be decoded, 2) then everything else warms up in the background
+    preloadCritical().then(() => {
+      setAssetsReady(true)
+      preloadRest()
+    })
   }, [])
 
   return (
     <div className="grain">
-      {loading && <Loader onDone={() => setLoading(false)} />}
+      {loading && <Loader ready={assetsReady} onDone={() => setLoading(false)} />}
       <CustomCursor />
       <Header />
       <main>

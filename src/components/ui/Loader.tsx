@@ -1,49 +1,56 @@
-import { useEffect, useState } from 'react'
-import { motion, AnimatePresence } from 'framer-motion'
+import { useEffect, useRef, useState } from 'react'
+import { m, AnimatePresence, useMotionValue } from 'framer-motion'
 import logo from '@/assets/ISRAAYA LOGO.svg'
-import logo1 from '@/assets/ISRAAYA MOTIF.svg'
+import motif from '@/assets/israaya-motif.webp'
 
-export default function Loader({ onDone }: { onDone: () => void }) {
-  const [progress, setProgress] = useState(0)
+export default function Loader({ ready, onDone }: { ready: boolean; onDone: () => void }) {
   const [hidden, setHidden] = useState(false)
+  const progress = useMotionValue(0) // drives a transform — no React re-render per frame
+  const readyRef = useRef(ready)
+  const doneRef = useRef(onDone)
+  readyRef.current = ready
+  doneRef.current = onDone
 
   useEffect(() => {
     const start = performance.now()
-    const duration = 1400
-    let raf: number
+    const minDuration = 1200
+    let raf = 0
+    let finished = false
 
     const tick = (now: number) => {
-      const p = Math.min(1, (now - start) / duration)
-      setProgress(p)
-      if (p < 1) {
-        raf = requestAnimationFrame(tick)
-      } else {
+      const t = Math.min(1, (now - start) / minDuration)
+      // hold at 90% until the hero photo is decoded, so the first screen never pops in
+      progress.set(Math.min(t, readyRef.current ? 1 : 0.9))
+      if (t >= 1 && readyRef.current && !finished) {
+        finished = true
         setTimeout(() => setHidden(true), 300)
-        setTimeout(onDone, 900)
+        setTimeout(() => doneRef.current(), 900)
+        return
       }
+      raf = requestAnimationFrame(tick)
     }
     raf = requestAnimationFrame(tick)
     return () => cancelAnimationFrame(raf)
-  }, [onDone])
+  }, [progress])
 
   return (
     <AnimatePresence>
       {!hidden && (
-        <motion.div
+        <m.div
           initial={{ opacity: 1 }}
           exit={{ opacity: 0 }}
           transition={{ duration: 0.7, ease: [0.25, 1, 0.5, 1] }}
           className="fixed inset-0 z-[200] bg-charcoal flex flex-col items-center justify-center"
         >
-          <img src={logo1} alt="Israaya Logo" className="w-32 h-24" />
-          <img src={logo} alt="Israaya Logo" className="w-32 h-24" />
+          <img loading="eager" decoding="async" src={motif} alt="Israaya Logo" className="w-32 h-24 object-contain" />
+          <img loading="eager" decoding="async" src={logo} alt="Israaya Logo" className="w-32 h-24" />
           <div className="w-40 h-px bg-softwhite/20 overflow-hidden">
-            <motion.div
-              style={{ width: `${progress * 100}%` }}
-              className="h-full bg-champagne"
+            <m.div
+              style={{ scaleX: progress }}
+              className="h-full w-full bg-champagne origin-left"
             />
           </div>
-        </motion.div>
+        </m.div>
       )}
     </AnimatePresence>
   )

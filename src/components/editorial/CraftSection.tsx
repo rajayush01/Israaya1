@@ -23,7 +23,7 @@ export default function CraftSection() {
 
     <div className="grid md:grid-cols-12 gap-4 md:gap-5 mt-16">
   <RevealText delay={0.1} className="md:col-span-8">
-    <img
+    <img loading="eager" decoding="async"
       src={craftImageLarge}
       alt="Hand embroidery detail"
       className="w-full h-[500px] md:h-[680px] object-cover object-center"
@@ -32,7 +32,7 @@ export default function CraftSection() {
 
   <div className="md:col-span-4 flex flex-col justify-between gap-8">
     <RevealText delay={0.2}>
-      <img
+      <img loading="eager" decoding="async"
         src={craftImageSmall}
         alt="Fabric detail"
         className="w-full h-[420px] md:h-[480px] object-cover object-center"

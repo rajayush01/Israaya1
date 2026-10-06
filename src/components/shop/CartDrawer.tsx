@@ -1,4 +1,4 @@
-import { AnimatePresence, motion } from 'framer-motion'
+import { AnimatePresence, m } from 'framer-motion'
 import { X, Minus, Plus } from 'lucide-react'
 import { useStore } from '@/lib/store'
 
@@ -10,14 +10,14 @@ export default function CartDrawer() {
     <AnimatePresence>
       {isCartOpen && (
         <>
-          <motion.div
+          <m.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             onClick={() => setCartOpen(false)}
             className="fixed inset-0 z-[90] bg-charcoal/40"
           />
-          <motion.aside
+          <m.aside
             initial={{ x: '100%' }}
             animate={{ x: 0 }}
             exit={{ x: '100%' }}
@@ -39,7 +39,7 @@ export default function CartDrawer() {
               )}
               {cart.map((item) => (
                 <div key={`${item.product.id}-${item.size}`} className="flex gap-4 py-6">
-                  <img
+                  <img loading="eager" decoding="async"
                     src={item.product.images[0]}
                     alt={item.product.name}
                     className="w-20 h-24 object-cover"
@@ -94,7 +94,7 @@ export default function CartDrawer() {
                 </button>
               </div>
             )}
-          </motion.aside>
+          </m.aside>
         </>
       )}
     </AnimatePresence>

@@ -8,7 +8,7 @@ export default function PhilosophySection() {
     <section className="py-24 md:py-36 max-w-[1600px] mx-auto px-6 md:px-10">
       <div className="grid md:grid-cols-2 gap-10 md:gap-16 items-center">
         <RevealText>
-          <img
+          <img loading="eager" decoding="async"
             src={philosophyImage}
             alt="Israaya philosophy"
             className="w-full h-[420px] md:h-[560px] object-cover"
