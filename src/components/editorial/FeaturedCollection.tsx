@@ -24,12 +24,12 @@ export default function FeaturedCollection() {
 
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-x-6 gap-y-14">
         {featured.map((p, i) => (
-          <RevealText key={p.id} delay={i * 0.1} className="flex flex-col gap-4">
+          <RevealText key={p.id} delay={i * 0.1} className="flex flex-col">
             <Link to={`/product/${p.id}`} className="block overflow-hidden group aspect-[3/4]">
               <img loading="eager" decoding="async"
                 src={p.images[0]}
                 alt={p.name}
-                className="w-full h-full object-cover object-top transition-transform duration-[1400ms] ease-out group-hover:scale-105"
+                className="w-full h-[90%] object-contain object-top transition-transform duration-[1400ms] ease-out group-hover:scale-105"
               />
             </Link>
             <ProductBlurb product={p} />
