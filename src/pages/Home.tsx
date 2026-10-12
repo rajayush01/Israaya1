@@ -5,7 +5,7 @@ import FeaturedCollection from '@/components/editorial/FeaturedCollection'
 import CraftSection from '@/components/editorial/CraftSection'
 // import ParallaxSection from '@/components/editorial/ParallaxSection'
 import StorySection from '@/components/editorial/StorySection'
-import InstagramGrid from '@/components/editorial/InstagramGrid'
+//import InstagramGrid from '@/components/editorial/InstagramGrid'
 import CampaignVideo from '@/components/editorial/CampaignVideo'
 import PhilosophySection from '@/components/editorial/PhilosophySection'
 import Marquee from '@/components/ui/Marquee'
@@ -24,7 +24,7 @@ export default function Home() {
       <CraftSection />
       {/* <ParallaxSection /> */}
       <StorySection />
-      <InstagramGrid />
+      {/* <InstagramGrid /> */}
       <CampaignVideo />
    
       <PhilosophySection />
