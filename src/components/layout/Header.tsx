@@ -5,6 +5,7 @@ import { Search, User, ShoppingBag, Menu } from 'lucide-react'
 import { useStore } from '@/lib/store'
 import MobileMenu from './MobileMenu'
 import logo from '@/assets/ISRAAYA LOGO.svg'
+import logo1 from '@/assets/ISRAAYA MOTIF.svg'
 
 export default function Header() {
   const [scrolled, setScrolled] = useState(false)
@@ -21,9 +22,8 @@ export default function Header() {
     return () => window.removeEventListener('scroll', onScroll)
   }, [pathname])
 
-  // Only the home page has a dark hero to sit over — everywhere else
-  // starts on a light background, so the header should read dark from
-  // the first frame there, scrolled or not.
+  // Home page sits over a dark hero until scrolled; every other page
+  // starts on a light background so the pill reads dark from frame one.
   const showTransparent = isHome && !scrolled
   const textColor = showTransparent ? 'text-softwhite' : 'text-charcoal'
 
@@ -33,13 +33,15 @@ export default function Header() {
         initial={{ opacity: 0, y: -12 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 1.2, delay: 0.6, ease: [0.25, 1, 0.5, 1] }}
-        className={`fixed top-0 inset-x-0 z-50 transition-[background-color,border-color] duration-500 ${
-          showTransparent
-            ? 'bg-transparent'
-            : 'bg-ivory/95 border-b border-charcoal/5'
-        }`}
+        className={`fixed top-3 md:top-5 inset-x-3 md:inset-x-8 mx-auto max-w-[1400px] z-50
+          rounded-full border backdrop-blur-md
+          transition-[background-color,border-color,box-shadow] duration-500 ${
+            showTransparent
+              ? 'bg-black/10 border-white/15 shadow-none'
+              : 'bg-ivory/90 border-charcoal/10 shadow-[0_8px_30px_rgba(0,0,0,0.08)]'
+          }`}
       >
-        <div className="max-w-[1600px] mx-auto px-6 md:px-10 grid grid-cols-3 items-center ">
+        <div className="px-5 md:px-10 py-1 md:py-1.5 grid grid-cols-3 items-center">
           <nav className={`hidden md:flex gap-8 text-xs tracking-label uppercase ${textColor}`}>
             <Link to="/shop" className="underline-reveal">Shop</Link>
             <Link to="/collections" className="underline-reveal">Collections</Link>
@@ -49,7 +51,7 @@ export default function Header() {
           </nav>
 
           <button
-            className={`md:hidden ${textColor}`}
+            className={`md:hidden justify-self-start ${textColor}`}
             onClick={() => setMobileOpen(true)}
             aria-label="Open menu"
           >
@@ -58,12 +60,25 @@ export default function Header() {
 
           <Link
             to="/"
-            className={`justify-self-center font-display text-2xl tracking-[0.15em] ${textColor}`}
+            className={`flex flex-col items-center justify-self-center font-display text-2xl tracking-[0.15em] ${textColor}`}
           >
-            <img loading="eager" decoding="async" src={logo} alt="Israaya Logo" className="w-32 h-24" />
+            <img
+              loading="eager"
+              decoding="async"
+              src={logo1}
+              alt="Israaya Logo"
+              className="h-6 md:h-8 w-auto -mb-5"
+            />
+            <img
+              loading="eager"
+              decoding="async"
+              src={logo}
+              alt="Israaya Logo"
+              className="h-14 md:h-16 w-auto -mb-2"
+            />
           </Link>
 
-          <div className={`flex items-center justify-end gap-6 ${textColor}`}>
+          <div className={`flex items-center justify-end gap-5 md:gap-6 ${textColor}`}>
             <button
               onClick={() => setSearchOpen(true)}
               className="hidden md:inline-flex"
