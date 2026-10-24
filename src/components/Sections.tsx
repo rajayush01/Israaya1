@@ -188,8 +188,8 @@ export function Promises() {
               <div className="flex items-start gap-4 md:justify-center">
                 <Icon strokeWidth={1} className="h-7 w-7 shrink-0 text-[#5a4f48]" />
                 <div>
-                  <p className="text-[8px] font-semibold uppercase tracking-[0.16em] text-[#2b2623]">{p.title}</p>
-                  <p className="mt-1 max-w-[120px] text-[8.5px] leading-[1.6] text-[#5a4f48]">{p.text}</p>
+                  <p className="text-[15px] font-semibold uppercase tracking-[0.16em] text-[#2b2623]">{p.title}</p>
+                  <p className="mt-1 max-w-[120px] text-[12px] leading-[1.6] text-[#5a4f48]">{p.text}</p>
                 </div>
               </div>
             </Reveal>

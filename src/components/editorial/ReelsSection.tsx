@@ -8,6 +8,8 @@ import {
   Volume2,
   VolumeX,
   ExternalLink,
+  Pause,
+  ArrowUpRight,
 } from 'lucide-react'
 
 import sampleVideo from '@/assets/sample-5s-360p.mp4'
@@ -104,87 +106,99 @@ function ReelCard({ reel }: { reel: Reel }) {
   }
 
   return (
-    <article className="group relative aspect-[9/16] min-w-0 overflow-hidden rounded-[10px] bg-[#d8d0c7]">
-      {/* Video preview */}
-      <video
-        ref={videoRef}
-        src={sampleVideo}
-        autoPlay
-        muted={muted}
-        loop
-        playsInline
-        preload="metadata"
-        onPlay={() => setPlaying(true)}
-        onPause={() => setPlaying(false)}
-        onError={() => setVideoFailed(true)}
-        className="absolute inset-0 h-full w-full object-cover"
-      />
+  <article className="group relative aspect-[9/16] min-w-0 overflow-hidden rounded-[10px] bg-[#d8d0c7]">
+    {/* Video preview */}
+    <video
+      ref={videoRef}
+      src={sampleVideo}
+      autoPlay
+      muted={muted}
+      loop
+      playsInline
+      preload="metadata"
+      onPlay={() => setPlaying(true)}
+      onPause={() => setPlaying(false)}
+      onError={() => setVideoFailed(true)}
+      className="absolute inset-0 h-full w-full object-cover transition-transform duration-700 ease-out group-hover:scale-[1.03]"
+    />
 
-      {/* Fallback if the video cannot load */}
-      {videoFailed && (
-        <div className="absolute inset-0 flex items-center justify-center bg-[#d8d0c7] px-4 text-center">
-          <p className="font-serif text-lg text-[#49413b]">
-            {reel.product}
-          </p>
-        </div>
-      )}
+    {/* Fallback if the video cannot load */}
+    {videoFailed && (
+      <div className="absolute inset-0 flex items-center justify-center bg-[#d8d0c7] px-4 text-center">
+        <p className="font-serif text-lg text-[#49413b]">{reel.product}</p>
+      </div>
+    )}
 
-      {/* Contrast overlay */}
-      <div className="pointer-events-none absolute inset-0 z-[2] bg-gradient-to-b from-black/20 via-transparent to-black/65" />
-
-      {/* Play / pause */}
-      <button
-        type="button"
-        onClick={togglePlayback}
-        disabled={videoFailed}
-        aria-label={playing ? 'Pause reel' : 'Play reel'}
-        className="absolute left-3 top-3 z-[3] flex h-10 w-10 items-center justify-center rounded-full bg-white/20 text-white backdrop-blur-md transition-colors hover:bg-white/35 disabled:opacity-50"
+    {/* Tap anywhere to play / pause */}
+    <button
+      type="button"
+      onClick={togglePlayback}
+      disabled={videoFailed}
+      aria-label={playing ? 'Pause reel' : 'Play reel'}
+      className="absolute inset-0 z-[1] flex items-center justify-center focus-visible:outline-none"
+    >
+      <span
+        className={`flex h-14 w-14 items-center justify-center rounded-full bg-white/25 text-white backdrop-blur-md transition-all duration-300 ${
+          playing ? 'scale-75 opacity-0' : 'scale-100 opacity-100'
+        }`}
       >
         {playing ? (
-          <span className="flex gap-[3px]">
-            <span className="h-4 w-[3px] rounded-full bg-white" />
-            <span className="h-4 w-[3px] rounded-full bg-white" />
-          </span>
+          <Pause size={20} fill="currentColor" />
         ) : (
-          <Play size={19} fill="currentColor" className="ml-0.5" />
+          <Play size={20} fill="currentColor" className="ml-0.5" />
         )}
-      </button>
+      </span>
+    </button>
 
-      {/* Mute */}
+    {/* Soft gradient for legibility */}
+    <div className="pointer-events-none absolute inset-0 z-[2] bg-gradient-to-b from-black/25 via-transparent to-black/50" />
+
+    {/* Top row: Instagram + mute */}
+    <div className="absolute inset-x-3 top-3 z-[3] flex items-center justify-between">
+      <a
+        href={reel.instagramHref}
+        target="_blank"
+        rel="noopener noreferrer"
+        aria-label={`Watch ${reel.product} on Instagram`}
+        className="flex h-9 w-9 items-center justify-center rounded-full bg-black/25 text-white backdrop-blur-md transition-colors hover:bg-black/50"
+      >
+        <InstagramIcon size={16} />
+      </a>
+
       <button
         type="button"
         onClick={toggleMute}
         disabled={videoFailed}
         aria-label={muted ? 'Unmute reel' : 'Mute reel'}
-        className="absolute right-3 top-3 z-[3] flex h-9 w-9 items-center justify-center rounded-full bg-black/30 text-white backdrop-blur-md disabled:opacity-50"
+        className="flex h-9 w-9 items-center justify-center rounded-full bg-black/25 text-white backdrop-blur-md transition-colors hover:bg-black/50 disabled:opacity-50"
       >
         {muted ? <VolumeX size={16} /> : <Volume2 size={16} />}
       </button>
+    </div>
 
-      {/* Product and Instagram links */}
-      <div className="absolute bottom-3 left-3 right-3 z-[3] flex flex-col gap-2">
-        <Link
-          to={reel.productHref}
-          className="flex min-h-[46px] items-center justify-center gap-2 rounded-lg border border-white/70 bg-black/50 px-2 text-center font-serif text-sm font-medium text-white backdrop-blur-md transition-colors hover:bg-black/75"
+    {/* Product bar */}
+    <Link
+      to={reel.productHref}
+      className="absolute bottom-3 left-3 right-3 z-[3] flex items-center justify-between gap-3 rounded-lg bg-white/90 py-2.5 pl-3.5 pr-2.5 backdrop-blur-md transition-colors hover:bg-white"
+    >
+      <span className="min-w-0">
+        <span className="block text-[9px] font-semibold uppercase tracking-[0.22em] text-[#77706a]">
+          Shop the look
+        </span>
+        <span
+          className="block truncate text-[17px] italic leading-tight text-[#292522]"
+          style={{ fontFamily: "'Cormorant Garamond', serif" }}
         >
-          <ShoppingBag size={16} strokeWidth={1.6} />
-          View product
-        </Link>
+          {reel.product}
+        </span>
+      </span>
 
-        <a
-          href={reel.instagramHref}
-          target="_blank"
-          rel="noopener noreferrer"
-          aria-label={`Watch ${reel.product} on Instagram`}
-          className="flex min-h-[42px] items-center justify-center gap-2 rounded-lg border border-white/50 bg-white/15 px-2 text-[10px] font-medium uppercase tracking-[0.1em] text-white backdrop-blur-md transition-colors hover:bg-white/30"
-        >
-          <InstagramIcon size={15} />
-          Watch on Instagram
-          <ExternalLink size={12} />
-        </a>
-      </div>
-    </article>
-  )
+      <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-[#201e1d] text-white transition-transform duration-300 group-hover:rotate-12">
+        <ArrowUpRight size={15} strokeWidth={1.7} />
+      </span>
+    </Link>
+  </article>
+)
 }
 
 export default function ReelsSection() {
