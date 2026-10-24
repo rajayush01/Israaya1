@@ -3,11 +3,9 @@ import { useRef, useState } from 'react'
 import { Link } from 'react-router-dom'
 import {
   Play,
-  ShoppingBag,
   ArrowRight,
   Volume2,
   VolumeX,
-  ExternalLink,
   Pause,
   ArrowUpRight,
 } from 'lucide-react'
@@ -155,15 +153,7 @@ function ReelCard({ reel }: { reel: Reel }) {
 
     {/* Top row: Instagram + mute */}
     <div className="absolute inset-x-3 top-3 z-[3] flex items-center justify-between">
-      <a
-        href={reel.instagramHref}
-        target="_blank"
-        rel="noopener noreferrer"
-        aria-label={`Watch ${reel.product} on Instagram`}
-        className="flex h-9 w-9 items-center justify-center rounded-full bg-black/25 text-white backdrop-blur-md transition-colors hover:bg-black/50"
-      >
-        <InstagramIcon size={16} />
-      </a>
+      
 
       <button
         type="button"
@@ -175,28 +165,40 @@ function ReelCard({ reel }: { reel: Reel }) {
         {muted ? <VolumeX size={16} /> : <Volume2 size={16} />}
       </button>
     </div>
-
-    {/* Product bar */}
-    <Link
+    
+    <div className="absolute inset-x-3 bottom-3">
+      <a
+        href={reel.instagramHref}
+        target="_blank"
+        rel="noopener noreferrer"
+        aria-label={`Watch ${reel.product} on Instagram`}
+        className="flex h-9 w-9 items-center justify-center rounded-full bg-black/25 text-white backdrop-blur-md transition-colors hover:bg-black/50"
+      >
+        <InstagramIcon size={16} />
+      </a>
+      <Link
       to={reel.productHref}
-      className="absolute bottom-3 left-3 right-3 z-[3] flex items-center justify-between gap-3 rounded-lg bg-white/90 py-2.5 pl-3.5 pr-2.5 backdrop-blur-md transition-colors hover:bg-white"
+      className="absolute right-0 bottom-0 z-[3] flex items-center justify-center rounded-lg bg-white/10 p-2 backdrop-blur-md transition-colors hover:bg-white"
     >
       <span className="min-w-0">
-        <span className="block text-[9px] font-semibold uppercase tracking-[0.22em] text-[#77706a]">
+        <span className="block text-[9px] font-semibold uppercase tracking-[0.22em] text-[#ffffff]">
           Shop the look
         </span>
-        <span
+        {/* <span
           className="block truncate text-[17px] italic leading-tight text-[#292522]"
           style={{ fontFamily: "'Cormorant Garamond', serif" }}
         >
           {reel.product}
-        </span>
+        </span> */}
       </span>
 
-      <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-[#201e1d] text-white transition-transform duration-300 group-hover:rotate-12">
-        <ArrowUpRight size={15} strokeWidth={1.7} />
+      <span className="flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-[#201e1d] text-white transition-transform duration-300 group-hover:rotate-12">
+        <ArrowUpRight size={10} strokeWidth={1.7} />
       </span>
     </Link>
+    </div>
+    {/* Product bar */}
+    
   </article>
 )
 }

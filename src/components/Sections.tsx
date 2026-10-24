@@ -206,7 +206,7 @@ export function CloserLook() {
   return (
     <section className="overflow-hidden bg-[#f3f0ed] pb-24 pt-14">
       <Reveal>
-        <h2 className="mb-10 text-center text-[13px] font-medium uppercase tracking-[0.2em] text-[#2b2623]">
+        <h2 className="mb-10 text-center text-[20px] font-bold uppercase tracking-[0.2em] text-[#2b2623]">
          As Spotted in Israaya
         </h2>
       </Reveal>
