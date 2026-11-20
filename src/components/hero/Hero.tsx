@@ -175,25 +175,25 @@ export default function Hero() {
       </m.div>
 
       <div className="relative mx-auto flex h-full max-w-[1600px] flex-col justify-end px-6 pb-20 md:px-10 md:pb-24">
-        <m.p
+        {/* <m.p
           initial={{ opacity: 0, y: 12 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.5, duration: 0.8, ease }}
           className="mb-5 text-xs uppercase tracking-label text-softwhite/70 md:text-sm"
         >
           Nikhaar · Chapter I
-        </m.p>
+        </m.p> */}
 
         <m.h1
           initial={{ opacity: 0, y: 28 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.7, duration: 1, ease }}
-          className="font-display text-[15vw] leading-[0.92] tracking-tight text-softwhite md:text-[7vw]"
+          className="font-display text-[13vw] leading-[0.92] tracking-tight text-softwhite md:text-[6vw]"
         >
-          Modern Indianwear,
+          The New Language of Indian Wear
           <br />
           <span className="italic text-champagne">
-            Rooted in Craft.
+            Welcome to the World Of Israaya
           </span>
         </m.h1>
 

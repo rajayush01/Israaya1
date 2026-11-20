@@ -17,7 +17,7 @@ export default function Home() {
   return (
     <>
       <Hero />
-      <Marquee text="ISRAAYA · MODERN INDIANWEAR · ROOTED IN CRAFT · MADE IN INDIA · WORN AROUND THE WORLD ·" />
+      <Marquee text="Made in India, made for the world · A new chapter. · A new world. · Made in India, made for the world · A new chapter. · A new world. · Made in India, made for the world · A new chapter. · A new world. · Made in India, made for the world · A new chapter. · A new world. ·" />
       <BrandIntro />
       <FeaturedCollection />
       {/* <ProductGrid /> */}
