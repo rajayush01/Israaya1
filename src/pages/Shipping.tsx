@@ -1,15 +1,22 @@
-import RevealText from '@/components/ui/RevealText'
+import PolicyLayout, { type PolicySection } from './PolicyLayout'
+import { EmailLink, WhatsAppLink, PolicyLink } from '@/lib/siteInfo'
 
-const sections = [
+const sections: PolicySection[] = [
   {
+    id: 'methods',
     title: 'Shipping Methods and Costs',
     paragraphs: [
       'We ship both within India and internationally.',
       'Standard domestic shipping is included in the product price. Fast or priority shipping within India is available at an extra charge.',
-      'Domestic and international orders can be placed directly on our website. If you have any queries or would like to discuss anything before making a purchase, please reach out to us via email at israayaindia@gmail.com or WhatsApp at +91 95992 80024.',
+      'Shipping cost and delivery timelines vary for international orders and are higher than domestic shipping.',
+      <>
+        Orders can be placed directly on our website. If you have any queries or would like to discuss anything
+        before making a purchase, please reach out to us via email at <EmailLink /> or WhatsApp at <WhatsAppLink />.
+      </>,
     ],
   },
   {
+    id: 'delivery',
     title: 'Delivery Timeline',
     paragraphs: [
       'As every piece is made to order, domestic orders are typically delivered within 15–25 days from order confirmation.',
@@ -18,45 +25,37 @@ const sections = [
     ],
   },
   {
+    id: 'taxes',
     title: 'Taxes & Duties',
     paragraphs: [
       'For Indian customers, product prices displayed are inclusive of all taxes and duties.',
       'For international customers, taxes, customs and import duties may apply depending on your country and are the responsibility of the recipient. Please contact us for more information before ordering.',
     ],
   },
+  {
+    id: 'exchanges',
+    title: 'Exchanges & Returns',
+    paragraphs: [
+      <>
+        Every piece is made to order. Please read our <PolicyLink to="/returns">Return & Exchange Policy</PolicyLink>{' '}
+        before placing your order.
+      </>,
+    ],
+  },
 ]
 
 export default function Shipping() {
   return (
-    <div className="pt-32 md:pt-40 pb-32 max-w-[900px] mx-auto px-6 md:px-10">
-      <RevealText as="h1" className="font-display text-[11vw] md:text-[4.5vw] leading-[0.95] mb-4">
-        Shipping &amp; Delivery
-      </RevealText>
-      <RevealText delay={0.05}>
-        <p className="text-brown/60 mb-16 text-sm">
-          Questions about your order?{' '}
-          <a href="/contact" className="underline-reveal text-brown">
-            Contact us.
-          </a>
-        </p>
-      </RevealText>
-
-      <div className="space-y-14">
-        {sections.map((s, i) => (
-          <RevealText key={i} delay={i * 0.08}>
-            <div className="border-t border-charcoal/10 pt-8">
-              <h2 className="text-[10px] tracking-label uppercase text-brown/50 mb-5">{s.title}</h2>
-              <div className="space-y-4">
-                {s.paragraphs.map((p, j) => (
-                  <p key={j} className="text-sm text-brown/75 leading-relaxed">
-                    {p}
-                  </p>
-                ))}
-              </div>
-            </div>
-          </RevealText>
-        ))}
-      </div>
-    </div>
+    <PolicyLayout
+      eyebrow="Customer Care"
+      title="Shipping & Delivery"
+      intro="Every Israaya piece is cut, fitted and finished for one person. Here is how we get it to you, within India and across the world."
+      highlights={[
+        { label: 'Domestic delivery', value: '15–25 days' },
+        { label: 'Standard domestic shipping', value: 'Included' },
+        { label: 'We ship', value: 'India & worldwide' },
+      ]}
+      sections={sections}
+    />
   )
 }

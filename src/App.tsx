@@ -118,6 +118,8 @@ import FAQs from '@/pages/FAQ'
 import Shipping from '@/pages/Shipping'
 import Returns from '@/pages/Returns'
 import FAQ from '@/pages/FAQ'
+import Privacy from '@/pages/Privacy'
+import Terms from '@/pages/Terms'
 
 function PageTransition({ children }: { children: ReactNode }) {
   return (
@@ -203,6 +205,14 @@ function AnimatedRoutes() {
         <Route
           path="/returns"
           element={<PageTransition><Returns /></PageTransition>}
+        />
+        <Route
+          path="/privacy-policy"
+          element={<PageTransition><Privacy /></PageTransition>}
+        />
+        <Route
+          path="/terms"
+          element={<PageTransition><Terms /></PageTransition>}
         />
       </Routes>
     </AnimatePresence>
