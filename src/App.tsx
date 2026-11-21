@@ -114,6 +114,7 @@ import Stories from '@/pages/Stories'
 import StoryDetail from '@/pages/StoryDetail'
 import About from '@/pages/About'
 import Contact from '@/pages/Contact'
+import FAQ from './pages/FAQ'
 
 function PageTransition({ children }: { children: ReactNode }) {
   return (
@@ -171,6 +172,10 @@ function AnimatedRoutes() {
         <Route
           path="/stories"
           element={<PageTransition><Stories /></PageTransition>}
+        />
+        <Route
+          path="/faq"
+          element={<PageTransition><FAQ /></PageTransition>}
         />
         <Route
           path="/stories/:slug"
