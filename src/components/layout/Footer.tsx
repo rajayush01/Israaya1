@@ -106,6 +106,7 @@
 
 
 import { useState } from 'react'
+import { Link } from 'react-router-dom'
 import { motion, useAnimation } from 'framer-motion'
 import InstagramIcon from '@/components/ui/InstagramIcon'
 
@@ -128,34 +129,28 @@ export default function Footer() {
           <FooterCol
             title="Shop"
             items={[
-              'Nikhaar Collection',
-              'All Products',
+              { label: 'Nikhaar Collection', to: '/collections/nikhaar' },
+              { label: 'All Products', to: '/shop' },
             ]}
           />
 
           <FooterCol
             title="Customer Care"
             items={[
-              'Contact Us',
-              'FAQs',
-              'Shipping & Delivery',
-              'Returns & Exchanges',
-              'Cancellation Policy',
-              'Size Guide',
-              'Care Guide',
-              'Bespoke Enquiries',
+              { label: 'Contact Us', to: '/contact' },
+              { label: 'FAQs', to: '/faqs' },
+              { label: 'Shipping & Delivery', to: '/shipping' },
+              { label: 'Returns & Exchanges', to: '/returns' },
             ]}
           />
 
           <FooterCol
             title="Legal"
             items={[
-              'Privacy Policy',
-              'Terms & Conditions',
-              'Shipping Policy',
-              'Return & Exchange Policy',
-              'Cancellation Policy',
-              'Disclaimer',
+              { label: 'Privacy Policy', to: '#' },
+              { label: 'Terms & Conditions', to: '#' },
+              { label: 'Shipping Policy', to: '/shipping' },
+              { label: 'Return & Exchange Policy', to: '/returns' },
             ]}
           />
 
@@ -391,7 +386,7 @@ function FooterCol({
   custom,
 }: {
   title: string
-  items: string[]
+  items: { label: string; to: string }[]
   custom?: React.ReactNode
 }) {
   return (
@@ -402,19 +397,22 @@ function FooterCol({
 
       <ul className="space-y-2.5">
         {items.map((item) => (
-          <li key={item}>
-            <a
-              href="#"
-              className="
-                text-sm
-                text-softwhite/70
-                hover:text-softwhite
-                transition-colors
-                underline-reveal
-              "
-            >
-              {item}
-            </a>
+          <li key={item.label}>
+            {item.to.startsWith('#') ? (
+              <a
+                href={item.to}
+                className="text-sm text-softwhite/70 hover:text-softwhite transition-colors underline-reveal"
+              >
+                {item.label}
+              </a>
+            ) : (
+              <Link
+                to={item.to}
+                className="text-sm text-softwhite/70 hover:text-softwhite transition-colors underline-reveal"
+              >
+                {item.label}
+              </Link>
+            )}
           </li>
         ))}
 

@@ -7,8 +7,9 @@ import { useStore } from '@/lib/store'
 import RevealText from '@/components/ui/RevealText'
 import ProductCard from '@/components/products/ProductCard'
 import ProductGallery from '@/components/products/ProductGallery'
+import SizeGuideModal from '@/components/ui/SizeGuideModal'
 
-const sizes = ['XS', 'S', 'M', 'L', 'XL']
+const sizes = ['XS', 'S', 'M', 'L', 'XL', 'XXL', '3XL', '4XL', '5XL', '6XL']
 
 const accordions = [
   { title: 'Fabric & Craft', key: 'fabricCraft' as const },
@@ -23,6 +24,7 @@ export default function Product() {
   const product = products.find((p) => p.id === id)
   const [size, setSize] = useState<string | null>(null)
   const [open, setOpen] = useState<string | null>('fabricCraft')
+  const [sizeGuideOpen, setSizeGuideOpen] = useState(false)
   const { addToCart, toggleWishlist, wishlist } = useStore()
 
   if (!product) return <Navigate to="/shop" replace />
@@ -30,12 +32,31 @@ export default function Product() {
   const related = products.filter((p) => p.id !== product.id).slice(0, 3)
   const isWishlisted = wishlist.includes(product.id)
 
-  const accordionContent: Record<string, string> = {
-    fabricCraft: `${product.fabric}. ${product.craft}. Colour may vary slightly due to the handmade nature of this piece.`,
+  const accordionContent: Record<string, React.ReactNode> = {
+    fabricCraft: `${product.fabric}. ${product.craft}.`,
     fit: product.fit,
-    care: 'Dry clean only. For detailed care, see our Care Instructions page.',
-    shipping:
-      'Made to order and shipped both within India and internationally. Standard delivery is 15–20 days from order confirmation, inclusive of delivery within India — international orders may take slightly longer depending on destination. Every piece is open to customization, from sizing to small design changes — reach out to us on WhatsApp or email to personalize your piece or request faster delivery for an upcoming event.',
+    care: (
+      <span className="space-y-2 block">
+        <span className="block">Wash Care: Dry clean only. For detailed care, see our Care Instructions page.</span>
+        <span className="block">Colour may vary slightly due to the handmade nature of this piece.</span>
+      </span>
+    ),
+    shipping: (
+      <span className="space-y-3 block">
+        <span className="block">
+          <span className="text-brown/50 uppercase tracking-label text-[10px]">Delivery Timeline</span>
+          <span className="block mt-1">15–20 days, made to order, inclusive of delivery within India. International orders may take slightly longer.</span>
+        </span>
+        <span className="block">
+          <span className="text-brown/50 uppercase tracking-label text-[10px]">Customization</span>
+          <span className="block mt-1">Every Israaya piece is made to order and open to customization, from sizing to small design changes. Reach out to us on WhatsApp or email to personalize your piece or request faster delivery for an upcoming event.</span>
+        </span>
+        <span className="block">
+          <span className="text-brown/50 uppercase tracking-label text-[10px]">Shipping</span>
+          <span className="block mt-1">Made to order and shipped both within India and internationally. Standard delivery is 15–20 days from order confirmation, with international orders taking slightly longer depending on destination.</span>
+        </span>
+      </span>
+    ),
     returns: 'Exchanges accepted within 7 days for unworn, unaltered pieces with tags attached. See our Return & Exchange Policy for full details.',
   }
 
@@ -73,11 +94,13 @@ export default function Product() {
           <div className="mb-6">
             <div className="flex items-center justify-between mb-3">
               <span className="text-[10px] tracking-label uppercase text-brown/50">Size</span>
-              <button className="text-[10px] tracking-label uppercase underline-reveal">
+              <button
+                onClick={() => setSizeGuideOpen(true)}
+                className="text-[10px] tracking-label uppercase underline-reveal">
                 Size Guide
               </button>
             </div>
-            <div className="flex gap-2">
+            <div className="flex gap-2 flex-wrap">
               {sizes.map((s) => (
                 <button
                   key={s}
@@ -92,6 +115,9 @@ export default function Product() {
                 </button>
               ))}
             </div>
+            <p className="mt-3 text-[10px] tracking-label uppercase text-brown/40">
+              Custom on request — reach out on WhatsApp or email
+            </p>
           </div>
 
           <div className="flex gap-3 mb-10">
@@ -137,9 +163,9 @@ export default function Product() {
                       transition={{ duration: 0.4, ease: [0.25, 1, 0.5, 1] }}
                       className="overflow-hidden"
                     >
-                      <p className="text-sm text-brown/70 pb-4 leading-relaxed">
+                      <div className="text-sm text-brown/70 pb-4 leading-relaxed">
                         {accordionContent[a.key]}
-                      </p>
+                      </div>
                     </m.div>
                   )}
                 </AnimatePresence>
@@ -160,6 +186,8 @@ export default function Product() {
           ))}
         </div>
       </div>
+
+      {sizeGuideOpen && <SizeGuideModal onClose={() => setSizeGuideOpen(false)} />}
     </div>
   )
 }

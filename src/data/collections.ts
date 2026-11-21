@@ -9,7 +9,7 @@ export const collections = [
     description:
       'Nikhaar means the full blossoming of beauty into its most radiant form — the moment a flower stops growing and simply becomes what it was always meant to be. Our debut chapter draws its inspiration entirely from nature, from gardens, from the small quiet details you only notice when you slow down and actually look. Every piece takes its name from something found there — a star caught in moonlight, a peacock feather, a bird mid-flight — each carrying its own small story from the natural world. The colours lean soft and daytime, easy to wear, easy to style, built to move between occasions rather than sit in a wardrobe waiting for one specific day. Like every chapter at Israaya, Nikhaar is one of a kind — it will not repeat, and it will not return once it closes.',
     image: siteImages.collectionCover,
-    pieceIds: ['hansa', 'madhura', 'sitara-chandni', 'kamal', 'sona-pankh', 'komal-tara'],
+    pieceIds: ['hansa', 'madhura', 'sitara-chandni', 'kamal', 'sona-pankh', 'komal-tara', 'morpankh', 'basant', 'megh', 'noor-bahar'],
   },
 ]
 

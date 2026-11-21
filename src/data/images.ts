@@ -22,6 +22,10 @@ export const productImages = {
   kamal: range(11, 3, 900),
   'sona-pankh': range(14, 2, 900),
   'komal-tara': range(16, 2, 900),
+  morpankh: range(34, 2, 900),
+  basant: range(36, 2, 900),
+  megh: range(38, 2, 900),
+  'noor-bahar': range(40, 2, 900),
 }
 
 export const siteImages = {
