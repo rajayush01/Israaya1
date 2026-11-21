@@ -114,9 +114,10 @@ import Stories from '@/pages/Stories'
 import StoryDetail from '@/pages/StoryDetail'
 import About from '@/pages/About'
 import Contact from '@/pages/Contact'
-import FAQs from '@/pages/FAQs'
+import FAQs from '@/pages/FAQ'
 import Shipping from '@/pages/Shipping'
 import Returns from '@/pages/Returns'
+import FAQ from '@/pages/FAQ'
 
 function PageTransition({ children }: { children: ReactNode }) {
   return (
