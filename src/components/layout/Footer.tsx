@@ -131,6 +131,7 @@ export default function Footer() {
             items={[
               { label: 'Nikhaar Collection', to: '/collections/nikhaar' },
               { label: 'All Products', to: '/shop' },
+              { label: 'Manage Store', to: import.meta.env.VITE_ADMIN_URL || 'http://localhost:5174' },
             ]}
           />
 
@@ -398,7 +399,16 @@ function FooterCol({
       <ul className="space-y-2.5">
         {items.map((item) => (
           <li key={item.label}>
-            {item.to.startsWith('#') ? (
+            {item.to.startsWith('http') ? (
+              <a
+                href={item.to}
+                target="_blank"
+                rel="noreferrer"
+                className="text-sm text-softwhite/70 hover:text-softwhite transition-colors underline-reveal"
+              >
+                {item.label}
+              </a>
+            ) : item.to.startsWith('#') ? (
               <a
                 href={item.to}
                 className="text-sm text-softwhite/70 hover:text-softwhite transition-colors underline-reveal"

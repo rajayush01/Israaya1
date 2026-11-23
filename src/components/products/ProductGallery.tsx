@@ -3,36 +3,37 @@ import { AnimatePresence, m } from 'framer-motion'
 import { ChevronLeft, ChevronRight, Play } from 'lucide-react'
 import productVideo from '@/assets/video/Hansa.mp4'
 
-// The video slot is always index 0; images follow from index 1 onward.
-// "active" tracks the current item in the unified rail.
+// A product video, when present, occupies index 0; images follow it.
 
 export default function ProductGallery({
   images,
+  videos = [],
   name,
 }: {
   images: string[]
+  videos?: string[]
   name: string
 }) {
-  // 0 = video, 1..n = images
-  const total = 1 + images.length
+  const videoItems = videos.length ? videos : name === 'Hansa' ? [productVideo] : []
+  const total = videoItems.length + images.length
   const [active, setActive] = useState(0)
   const [direction, setDirection] = useState(0)
   const videoRef = useRef<HTMLVideoElement>(null)
+  const isVideo = active < videoItems.length
+  const video = videoItems[active]
+  const imageOffset = videoItems.length
+  const imgIdx = active - imageOffset
 
   const goTo = (next: number) => {
     if (next === active) return
     setDirection(next > active ? 1 : -1)
-    setActive((next + total) % total)
+    setActive(total ? (next + total) % total : 0)
   }
 
   // Pause video whenever user navigates away from it
   useEffect(() => {
-    if (active !== 0) videoRef.current?.pause()
-  }, [active])
-
-  const isVideo = active === 0
-  // image index within the images array (active=1 → images[0])
-  const imgIdx = active - 1
+    if (!isVideo) videoRef.current?.pause()
+  }, [active, isVideo])
 
   return (
     <div>
@@ -42,15 +43,16 @@ export default function ProductGallery({
         <div className="hidden sm:flex flex-col gap-3 w-16 md:w-20 shrink-0">
 
           {/* Video thumbnail */}
-          <button
-            onClick={() => goTo(0)}
+          {videoItems.map((videoItem, index) => <button
+            key={videoItem}
+            onClick={() => goTo(index)}
             className={`relative overflow-hidden border transition-colors duration-300 ${
-              active === 0 ? 'border-charcoal' : 'border-transparent hover:border-charcoal/30'
+              active === index ? 'border-charcoal' : 'border-transparent hover:border-charcoal/30'
             }`}
-            aria-label="View video"
+            aria-label={`View video ${index + 1}`}
           >
             <video
-              src={productVideo}
+              src={videoItem}
               className="w-full aspect-[3/4] object-cover object-top pointer-events-none"
               muted
               playsInline
@@ -61,15 +63,15 @@ export default function ProductGallery({
                 <Play size={9} strokeWidth={1.5} className="ml-0.5" />
               </div>
             </div>
-          </button>
+          </button>)}
 
           {/* Image thumbnails */}
           {images.map((img, i) => (
             <button
               key={i}
-              onClick={() => goTo(i + 1)}
+              onClick={() => goTo(i + imageOffset)}
               className={`overflow-hidden border transition-colors duration-300 ${
-                active === i + 1 ? 'border-charcoal' : 'border-transparent hover:border-charcoal/30'
+                active === i + imageOffset ? 'border-charcoal' : 'border-transparent hover:border-charcoal/30'
               }`}
               aria-label={`View image ${i + 1}`}
             >
@@ -99,7 +101,7 @@ export default function ProductGallery({
               >
                 <video
                   ref={videoRef}
-                  src={productVideo}
+                  src={video}
                   controls
                   playsInline
                   className="absolute inset-0 w-full h-full object-cover object-top"
@@ -145,7 +147,7 @@ export default function ProductGallery({
                 className={`h-1 rounded-full transition-[width,background-color] duration-300 ${
                   i === active ? 'w-6 bg-charcoal' : 'w-1.5 bg-charcoal/25'
                 }`}
-                aria-label={i === 0 ? 'View video' : `Go to image ${i}`}
+                aria-label={videoItems[i] ? `View video ${i + 1}` : `Go to image ${i - imageOffset + 1}`}
               />
             ))}
           </div>
@@ -156,15 +158,16 @@ export default function ProductGallery({
       <div className="sm:hidden flex gap-3 mt-4 overflow-x-auto">
 
         {/* Video thumbnail mobile */}
-        <button
-          onClick={() => goTo(0)}
+        {videoItems.map((videoItem, index) => <button
+          key={videoItem}
+          onClick={() => goTo(index)}
           className={`relative overflow-hidden border shrink-0 w-16 transition-colors duration-300 ${
-            active === 0 ? 'border-charcoal' : 'border-transparent'
+            active === index ? 'border-charcoal' : 'border-transparent'
           }`}
-          aria-label="View video"
+          aria-label={`View video ${index + 1}`}
         >
           <video
-            src={productVideo}
+            src={videoItem}
             className="w-full aspect-[3/4] object-cover object-top pointer-events-none"
             muted
             playsInline
@@ -175,15 +178,15 @@ export default function ProductGallery({
               <Play size={8} strokeWidth={1.5} className="ml-0.5" />
             </div>
           </div>
-        </button>
+        </button>)}
 
         {/* Image thumbnails mobile */}
         {images.map((img, i) => (
           <button
             key={i}
-            onClick={() => goTo(i + 1)}
+            onClick={() => goTo(i + imageOffset)}
             className={`overflow-hidden border shrink-0 w-16 transition-colors duration-300 ${
-              active === i + 1 ? 'border-charcoal' : 'border-transparent'
+              active === i + imageOffset ? 'border-charcoal' : 'border-transparent'
             }`}
             aria-label={`View image ${i + 1}`}
           >

@@ -1,5 +1,16 @@
 import { productImages } from './images'
 
+export type ProductVariant = {
+  id: string
+  colorName: string
+  colorCode: string
+  price: number
+  originalPrice?: number
+  images: string[]
+  videos: string[]
+  sizes: string[]
+}
+
 export type Product = {
   id: string
   name: string
@@ -13,8 +24,13 @@ export type Product = {
   craft: string
   fit: string
   images: string[]
-  category: 'sets' | 'kurtas' | 'dresses' | 'separates' | 'occasionwear'
+  category: string
   isNew?: boolean
+  sizes?: string[]
+  videos?: string[]
+  variants?: ProductVariant[]
+  defaultVariantId?: string
+  selectedVariantId?: string
 }
 
 export const products: Product[] = [

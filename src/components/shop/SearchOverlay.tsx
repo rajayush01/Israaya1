@@ -3,11 +3,12 @@ import { AnimatePresence, m } from 'framer-motion'
 import { X, Search } from 'lucide-react'
 import { Link } from 'react-router-dom'
 import { useStore } from '@/lib/store'
-import { products } from '@/data/products'
+import { useCatalog } from '@/lib/catalog'
 
 const POPULAR_SEARCHES = ['Nikhaar', 'Sona Pankh', 'Kurta Sets', 'Occasionwear']
 
 export default function SearchOverlay() {
+  const { products } = useCatalog()
   const { isSearchOpen, setSearchOpen } = useStore()
   const [query, setQuery] = useState('')
 

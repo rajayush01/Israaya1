@@ -1,15 +1,35 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { useParams, Navigate } from 'react-router-dom'
 import { m, AnimatePresence } from 'framer-motion'
 import { ChevronDown, Heart } from 'lucide-react'
-import { products } from '@/data/products'
+import type { Product as CatalogProduct } from '@/data/products'
+import { useCatalog } from '@/lib/catalog'
 import { useStore } from '@/lib/store'
 import RevealText from '@/components/ui/RevealText'
 import ProductCard from '@/components/products/ProductCard'
 import ProductGallery from '@/components/products/ProductGallery'
 import SizeGuideModal from '@/components/ui/SizeGuideModal'
 
-const sizes = ['XS', 'S', 'M', 'L', 'XL', 'XXL', '3XL', '4XL', '5XL', '6XL']
+const fallbackSizes = ['XS', 'S', 'M', 'L', 'XL', 'XXL', '3XL', '4XL', '5XL', '6XL']
+
+type ProductVariantOption = {
+  id: string
+  colorName: string
+  colorCode: string
+  price: number
+  originalPrice?: number
+  images: string[]
+  videos: string[]
+  sizes: string[]
+}
+
+type ProductWithVariants = CatalogProduct & {
+  variants?: ProductVariantOption[]
+  defaultVariantId?: string
+  selectedVariantId?: string
+  sizes?: string[]
+  videos?: string[]
+}
 
 const accordions = [
   { title: 'Fabric & Craft', key: 'fabricCraft' as const },
@@ -21,19 +41,42 @@ const accordions = [
 
 export default function Product() {
   const { id } = useParams()
-  const product = products.find((p) => p.id === id)
+  const { products, loading } = useCatalog()
+  const product = products.find((p) => p.id === id) as ProductWithVariants | undefined
   const [size, setSize] = useState<string | null>(null)
   const [open, setOpen] = useState<string | null>('fabricCraft')
   const [sizeGuideOpen, setSizeGuideOpen] = useState(false)
   const { addToCart, toggleWishlist, wishlist } = useStore()
+  const [selectedVariantId, setSelectedVariantId] = useState<string | undefined>()
 
+  useEffect(() => {
+    setSelectedVariantId(product?.defaultVariantId || product?.variants?.[0]?.id)
+    setSize(null)
+  }, [product?.id, product?.defaultVariantId])
+
+  const selectedVariant: ProductVariantOption | undefined = product?.variants?.find((variant) => variant.id === selectedVariantId) || product?.variants?.[0]
+  const activeProduct: ProductWithVariants | undefined = product && selectedVariant
+    ? {
+        ...product,
+        selectedVariantId: selectedVariant.id,
+        color: selectedVariant.colorName,
+        price: selectedVariant.price,
+        originalPrice: selectedVariant.originalPrice,
+        images: selectedVariant.images,
+        videos: selectedVariant.videos,
+        sizes: selectedVariant.sizes,
+      }
+    : product
+
+  if (!product && loading) return <div className="min-h-[50vh] pt-40 text-center">Loading piece…</div>
   if (!product) return <Navigate to="/shop" replace />
 
-  const related = products.filter((p) => p.id !== product.id).slice(0, 3)
+  const related = products.filter((p) => p.id !== product.id && p.category === product.category).slice(0, 3)
+  const sizes: string[] = selectedVariant ? selectedVariant.sizes : product.sizes?.length ? product.sizes : fallbackSizes
   const isWishlisted = wishlist.includes(product.id)
 
   const accordionContent: Record<string, React.ReactNode> = {
-    fabricCraft: `${product.fabric}. ${product.craft}.`,
+    fabricCraft: product.fabric || product.craft || 'Please contact us for fabric and craftsmanship details.',
     fit: product.fit,
     care: (
       <span className="space-y-2 block">
@@ -65,22 +108,38 @@ export default function Product() {
       <div className="max-w-[1600px] mx-auto px-6 md:px-10 grid md:grid-cols-2 gap-10 md:gap-16">
         {/* Gallery */}
         <RevealText>
-          <ProductGallery images={product.images} name={product.name} />
+          <ProductGallery images={activeProduct?.images || product.images} videos={activeProduct?.videos} name={product.name} />
         </RevealText>
 
         {/* Info */}
         <div className="md:sticky md:top-28 md:self-start pb-24">
           <p className="text-[10px] tracking-label uppercase text-brown/50 mb-2">
-            {product.collection} · {product.chapter}
+            {product.collection}{product.chapter ? ` · ${product.chapter}` : ''}
           </p>
           <h1 className="font-display text-4xl md:text-5xl mb-1">{product.name}</h1>
-          <p className="text-[11px] tracking-label uppercase text-brown/50 mb-4">{product.color}</p>
+          <p className="text-[11px] tracking-label uppercase text-brown/50 mb-3">{activeProduct?.color}</p>
+          {product.variants && product.variants.length > 1 && (
+            <div className="flex flex-wrap gap-2 mb-5" aria-label="Choose a color">
+              {product.variants.map((variant) => (
+                <button
+                  key={variant.id}
+                  type="button"
+                  onClick={() => { setSelectedVariantId(variant.id); setSize(null) }}
+                  className={`w-8 h-8 rounded-full border-2 ${selectedVariant?.id === variant.id ? 'border-charcoal p-1' : 'border-transparent'}`}
+                  aria-label={variant.colorName || 'Choose variant'}
+                  title={variant.colorName}
+                >
+                  <span className="block w-full h-full rounded-full border border-charcoal/15" style={{ backgroundColor: variant.colorCode }} />
+                </button>
+              ))}
+            </div>
+          )}
           <p className="text-lg mb-6 flex items-baseline gap-3">
-            <span>₹{product.price.toLocaleString('en-IN')}</span>
-            {product.originalPrice && (
+            <span>₹{(activeProduct?.price || 0).toLocaleString('en-IN')}</span>
+            {activeProduct?.originalPrice && (
               <>
                 <span className="text-brown/40 line-through text-base">
-                  ₹{product.originalPrice.toLocaleString('en-IN')}
+                  ₹{activeProduct.originalPrice.toLocaleString('en-IN')}
                 </span>
                 <span className="text-xs tracking-label uppercase text-burgundy">10% off</span>
               </>
@@ -101,7 +160,7 @@ export default function Product() {
               </button>
             </div>
             <div className="flex gap-2 flex-wrap">
-              {sizes.map((s) => (
+              {sizes.map((s: string) => (
                 <button
                   key={s}
                   onClick={() => setSize(s)}
@@ -115,6 +174,7 @@ export default function Product() {
                 </button>
               ))}
             </div>
+            {selectedVariant && sizes.length === 0 && <p className="mt-3 text-xs text-brown/60">Currently unavailable in this color.</p>}
             <p className="mt-3 text-[10px] tracking-label uppercase text-brown/40">
               Custom on request — reach out on WhatsApp or email
             </p>
@@ -122,7 +182,7 @@ export default function Product() {
 
           <div className="flex gap-3 mb-10">
             <button
-              onClick={() => size && addToCart(product, size)}
+              onClick={() => size && activeProduct && addToCart(activeProduct, size)}
               disabled={!size}
               className="flex-1 bg-burgundy text-softwhite py-4 text-xs tracking-label uppercase hover:bg-wine transition-colors duration-500 disabled:opacity-40 disabled:cursor-not-allowed"
             >

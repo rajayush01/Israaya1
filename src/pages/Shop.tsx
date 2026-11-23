@@ -2,7 +2,7 @@ import { useState } from 'react'
 import { SlidersHorizontal } from 'lucide-react'
 import RevealText from '@/components/ui/RevealText'
 import ProductCard from '@/components/products/ProductCard'
-import { products, categories } from '@/data/products'
+import { useCatalog } from '@/lib/catalog'
 
 const SORT_OPTIONS = [
   'Featured',
@@ -14,14 +14,16 @@ const SORT_OPTIONS = [
 ] as const
 
 export default function Shop() {
-  const [active, setActive] = useState<(typeof categories)[number]>('All')
+  const { products, categories: liveCategories } = useCatalog()
+  const categories = ['All', 'New Arrivals', ...(liveCategories.length ? liveCategories.map((category) => category.name) : ['Sets', 'Kurtas', 'Dresses', 'Separates', 'Occasionwear'])]
+  const [active, setActive] = useState('All')
   const [sort, setSort] = useState<(typeof SORT_OPTIONS)[number]>('Featured')
 
   const filtered = products
     .filter((p) => {
       if (active === 'All') return true
       if (active === 'New Arrivals') return p.isNew
-      return p.category === active.toLowerCase()
+      return p.category === (liveCategories.find((category) => category.name === active)?.slug || active.toLowerCase())
     })
     .sort((a, b) => {
       switch (sort) {

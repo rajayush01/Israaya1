@@ -120,6 +120,7 @@ import Returns from '@/pages/Returns'
 import FAQ from '@/pages/FAQ'
 import Privacy from '@/pages/Privacy'
 import Terms from '@/pages/Terms'
+import { CatalogProvider } from '@/lib/catalog'
 
 function PageTransition({ children }: { children: ReactNode }) {
   return (
@@ -249,6 +250,7 @@ function App() {
   }, [])
 
   return (
+    <CatalogProvider>
     <div className="grain">
       {loading && (
         <Loader
@@ -268,6 +270,7 @@ function App() {
       <SearchOverlay />
       <NewsletterPopup />
     </div>
+    </CatalogProvider>
   )
 }
 

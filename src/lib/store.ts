@@ -14,8 +14,8 @@ type Store = {
   isSearchOpen: boolean
   isNewsletterOpen: boolean
   addToCart: (product: Product, size: string) => void
-  removeFromCart: (id: string, size: string) => void
-  updateQuantity: (id: string, size: string, quantity: number) => void
+  removeFromCart: (id: string, size: string, variantId?: string) => void
+  updateQuantity: (id: string, size: string, quantity: number, variantId?: string) => void
   toggleWishlist: (id: string) => void
   setCartOpen: (open: boolean) => void
   setSearchOpen: (open: boolean) => void
@@ -31,7 +31,7 @@ export const useStore = create<Store>((set) => ({
   addToCart: (product, size) =>
     set((state) => {
       const existing = state.cart.find(
-        (i) => i.product.id === product.id && i.size === size
+        (i) => i.product.id === product.id && i.product.selectedVariantId === product.selectedVariantId && i.size === size
       )
       if (existing) {
         return {
@@ -46,14 +46,14 @@ export const useStore = create<Store>((set) => ({
         isCartOpen: true,
       }
     }),
-  removeFromCart: (id, size) =>
+  removeFromCart: (id, size, variantId) =>
     set((state) => ({
-      cart: state.cart.filter((i) => !(i.product.id === id && i.size === size)),
+      cart: state.cart.filter((i) => !(i.product.id === id && i.product.selectedVariantId === variantId && i.size === size)),
     })),
-  updateQuantity: (id, size, quantity) =>
+  updateQuantity: (id, size, quantity, variantId) =>
     set((state) => ({
       cart: state.cart.map((i) =>
-        i.product.id === id && i.size === size ? { ...i, quantity } : i
+        i.product.id === id && i.product.selectedVariantId === variantId && i.size === size ? { ...i, quantity } : i
       ),
     })),
   toggleWishlist: (id) =>

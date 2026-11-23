@@ -12,12 +12,18 @@ import Marquee from '@/components/ui/Marquee'
 import ReelsSection from '@/components/editorial/ReelsSection'
 
 import {CloserLook,Promises} from '../components/Sections'
+import StorefrontBanners from '@/components/editorial/StorefrontBanners'
 
 export default function Home() {
   return (
     <>
       <Hero />
+<<<<<<< Updated upstream
       <Marquee text="Made in India, made for the world · A new chapter · A new world · Made in India, made for the world · A new chapter · A new world · Made in India, made for the world · A new chapter · A new world · Made in India, made for the world · A new chapter · A new world · Made in India, made for the world · A new chapter · A new world ·" />
+=======
+      <StorefrontBanners />
+      <Marquee text="Made in India, made for the world · A new chapter. · A new world. · Made in India, made for the world · A new chapter. · A new world. · Made in India, made for the world · A new chapter. · A new world. · Made in India, made for the world · A new chapter. · A new world. ·" />
+>>>>>>> Stashed changes
       <BrandIntro />
       <FeaturedCollection />
       {/* <ProductGrid /> */}

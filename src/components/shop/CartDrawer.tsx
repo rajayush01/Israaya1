@@ -38,7 +38,7 @@ export default function CartDrawer() {
                 <p className="py-16 text-center text-sm text-brown/60">Your bag is empty.</p>
               )}
               {cart.map((item) => (
-                <div key={`${item.product.id}-${item.size}`} className="flex gap-4 py-6">
+                <div key={`${item.product.id}-${item.product.selectedVariantId || 'default'}-${item.size}`} className="flex gap-4 py-6">
                   <img loading="eager" decoding="async"
                     src={item.product.images[0]}
                     alt={item.product.name}
@@ -46,13 +46,14 @@ export default function CartDrawer() {
                   />
                   <div className="flex-1">
                     <p className="font-display text-lg">{item.product.name}</p>
+                    {item.product.color && <p className="text-xs text-brown/50 mt-1">{item.product.color}</p>}
                     <p className="text-xs text-brown/50 mt-1">Size {item.size}</p>
                     <p className="text-sm mt-2">₹{item.product.price.toLocaleString('en-IN')}</p>
 
                     <div className="flex items-center gap-3 mt-3">
                       <button
                         onClick={() =>
-                          updateQuantity(item.product.id, item.size, Math.max(1, item.quantity - 1))
+                          updateQuantity(item.product.id, item.size, Math.max(1, item.quantity - 1), item.product.selectedVariantId)
                         }
                         className="w-6 h-6 flex items-center justify-center border border-charcoal/20"
                       >
@@ -60,13 +61,13 @@ export default function CartDrawer() {
                       </button>
                       <span className="text-sm w-4 text-center">{item.quantity}</span>
                       <button
-                        onClick={() => updateQuantity(item.product.id, item.size, item.quantity + 1)}
+                        onClick={() => updateQuantity(item.product.id, item.size, item.quantity + 1, item.product.selectedVariantId)}
                         className="w-6 h-6 flex items-center justify-center border border-charcoal/20"
                       >
                         <Plus size={11} />
                       </button>
                       <button
-                        onClick={() => removeFromCart(item.product.id, item.size)}
+                        onClick={() => removeFromCart(item.product.id, item.size, item.product.selectedVariantId)}
                         className="ml-auto text-[10px] tracking-label uppercase text-brown/50 underline-reveal"
                       >
                         Remove

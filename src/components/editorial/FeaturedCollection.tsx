@@ -1,9 +1,11 @@
 import { Link } from 'react-router-dom'
 import RevealText from '@/components/ui/RevealText'
 import SectionLabel from '@/components/ui/SectionLabel'
-import { products } from '@/data/products'
+import { useCatalog } from '@/lib/catalog'
+import type { Product } from '@/data/products'
 
 export default function FeaturedCollection() {
+  const { products } = useCatalog()
   const featured = products.slice(0, 3)
 
   return (
@@ -40,7 +42,7 @@ export default function FeaturedCollection() {
   )
 }
 
-function ProductBlurb({ product }: { product: (typeof products)[number] }) {
+function ProductBlurb({ product }: { product: Product }) {
   return (
     <div className="flex items-baseline justify-between text-charcoal">
       <div>

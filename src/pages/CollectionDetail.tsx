@@ -2,15 +2,16 @@ import { useParams, Navigate } from 'react-router-dom'
 import RevealText from '@/components/ui/RevealText'
 import ProductCard from '@/components/products/ProductCard'
 import { collections } from '@/data/collections'
-import { products } from '@/data/products'
+import { useCatalog } from '@/lib/catalog'
 
 export default function CollectionDetail() {
+  const { products } = useCatalog()
   const { slug } = useParams()
   const collection = collections.find((c) => c.slug === slug)
 
   if (!collection) return <Navigate to="/collections" replace />
 
-  const pieces = products.filter((p) => collection.pieceIds.includes(p.id))
+  const pieces = products.filter((p) => collection.pieceIds.includes(p.id) || p.collection.toLowerCase() === collection.name.toLowerCase() || p.category === collection.slug)
 
   return (
     <div className="pt-24 md:pt-28">

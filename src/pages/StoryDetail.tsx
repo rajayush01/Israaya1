@@ -1,9 +1,10 @@
 import { useParams, Navigate, Link } from 'react-router-dom'
 import RevealText from '@/components/ui/RevealText'
 import { stories } from '@/data/collections'
-import { products } from '@/data/products'
+import { useCatalog } from '@/lib/catalog'
 
 export default function StoryDetail() {
+  const { products } = useCatalog()
   const { slug } = useParams()
   const story = stories.find((s) => s.slug === slug)
 

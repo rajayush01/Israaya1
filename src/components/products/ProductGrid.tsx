@@ -1,6 +1,6 @@
 import RevealText from '@/components/ui/RevealText'
 import ProductCard from './ProductCard'
-import { products } from '@/data/products'
+import { useCatalog } from '@/lib/catalog'
 
 const aspects: Array<'portrait' | 'square' | 'tall'> = [
   'tall',
@@ -12,6 +12,7 @@ const aspects: Array<'portrait' | 'square' | 'tall'> = [
 ]
 
 export default function ProductGrid() {
+  const { products } = useCatalog()
   return (
     <section className="py-20 md:py-28 max-w-[1600px] mx-auto px-6 md:px-10">
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-x-6 gap-y-14">
