@@ -12,18 +12,18 @@ import Marquee from '@/components/ui/Marquee'
 import ReelsSection from '@/components/editorial/ReelsSection'
 
 import {CloserLook,Promises} from '../components/Sections'
-import StorefrontBanners from '@/components/editorial/StorefrontBanners'
+import { useCatalog } from '@/lib/catalog'
+
+const fallbackMarquee = 'Made in India, made for the world · A new chapter · A new world · Made in India, made for the world · A new chapter · A new world · Made in India, made for the world · A new chapter · A new world · Made in India, made for the world · A new chapter · A new world · Made in India, made for the world · A new chapter · A new world ·'
 
 export default function Home() {
+  const { marqueeText } = useCatalog()
+
   return (
     <>
       <Hero />
-<<<<<<< Updated upstream
-      <Marquee text="Made in India, made for the world · A new chapter · A new world · Made in India, made for the world · A new chapter · A new world · Made in India, made for the world · A new chapter · A new world · Made in India, made for the world · A new chapter · A new world · Made in India, made for the world · A new chapter · A new world ·" />
-=======
-      <StorefrontBanners />
-      <Marquee text="Made in India, made for the world · A new chapter. · A new world. · Made in India, made for the world · A new chapter. · A new world. · Made in India, made for the world · A new chapter. · A new world. · Made in India, made for the world · A new chapter. · A new world. ·" />
->>>>>>> Stashed changes
+      <Marquee text={marqueeText || fallbackMarquee} />
+      {/* <StorefrontBanners />  */}
       <BrandIntro />
       <FeaturedCollection />
       {/* <ProductGrid /> */}

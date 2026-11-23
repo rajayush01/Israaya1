@@ -9,6 +9,7 @@ type CatalogValue = {
   categories: CatalogCategory[]
   announcements: Announcement[]
   popupBanner: StorefrontPopup | null
+  marqueeText: string
   loading: boolean
 }
 
@@ -76,6 +77,7 @@ export function CatalogProvider({ children }: { children: ReactNode }) {
   const [categories, setCategories] = useState<CatalogCategory[]>([])
   const [announcements, setAnnouncements] = useState<Announcement[]>([])
   const [popupBanner, setPopupBanner] = useState<StorefrontPopup | null>(null)
+  const [marqueeText, setMarqueeText] = useState('')
   const [loading, setLoading] = useState(true)
 
   useEffect(() => {
@@ -86,8 +88,8 @@ export function CatalogProvider({ children }: { children: ReactNode }) {
       return response.json()
     }
 
-    Promise.all([get('products'), get('categories'), get('banners')])
-      .then(([productResponse, categoryResponse, bannerResponse]) => {
+    Promise.all([get('products'), get('categories'), get('banners'), get('marquee')])
+      .then(([productResponse, categoryResponse, bannerResponse, marqueeResponse]) => {
         if (!active) return
         const loadedProducts = list(record(productResponse).data).map(mapProduct).filter((item) => item.images.length > 0 || Boolean(item.videos?.length))
         setProducts(loadedProducts)
@@ -102,6 +104,7 @@ export function CatalogProvider({ children }: { children: ReactNode }) {
           buttonText: String(popup.buttonText || 'Explore'),
           buttonLink: String(popup.buttonLink || '/shop'),
         })
+        setMarqueeText(String(record(record(marqueeResponse).data).text || ''))
       })
       .catch((error) => console.warn('Using local catalog until storefront API is available:', error))
       .finally(() => { if (active) setLoading(false) })
@@ -109,7 +112,7 @@ export function CatalogProvider({ children }: { children: ReactNode }) {
     return () => { active = false }
   }, [])
 
-  const value = useMemo(() => ({ products, categories, announcements, popupBanner, loading }), [products, categories, announcements, popupBanner, loading])
+  const value = useMemo(() => ({ products, categories, announcements, popupBanner, marqueeText, loading }), [products, categories, announcements, popupBanner, marqueeText, loading])
   return <CatalogContext.Provider value={value}>{children}</CatalogContext.Provider>
 }
 
