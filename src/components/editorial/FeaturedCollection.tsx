@@ -49,7 +49,7 @@ function ProductBlurb({ product }: { product: Product }) {
     <div className="flex items-baseline justify-between text-charcoal">
       <div>
         <p className="text-[10px] tracking-label uppercase opacity-60 mb-1">{product.collection}</p>
-        <p className="font-display text-lg md:text-xl">{product.name}</p>
+        <p className="font-display text-base md:text-lg">{product.name}</p>
       </div>
       <p className="text-sm">₹{product.price.toLocaleString('en-IN')}</p>
     </div>
