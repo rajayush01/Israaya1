@@ -578,7 +578,7 @@ import {
   type MotionValue,
 } from "framer-motion";
 
-import founderImage from "./assets/products/Founder Image.jpg";
+import founderImage from "../assets/products/Founder Image.jpg";
 
 /* ------------------------------------------------------------------ */
 /* Assets                                                              */
