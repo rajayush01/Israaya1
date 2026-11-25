@@ -22,7 +22,7 @@ export default function Collections() {
             <div>
               <p className="text-[10px] tracking-label uppercase text-brown/50 mb-3">{c.chapter}</p>
               <p className="font-display text-4xl md:text-5xl mb-4">{c.name}</p>
-              <p className="text-brown/70 mb-8 max-w-sm italic font-display text-lg">{c.tagline}</p>
+              <p className="text-brown/70 mb-8 max-w-2xl italic font-display text-lg">Nikhaar means the full blossoming of beauty into its most radiant form, the moment a flower stops growing and simply becomes what it was always meant to be. This is our debut chapter, the one Israaya launches from, and it draws its inspiration entirely from nature, from gardens, from the small quiet details you only notice when you slow down and actually look. Every piece takes its name from something found there, a star caught in moonlight, a peacock feather, a bird mid-flight, each one carrying its own small story from the natural world.</p>
               <Link to={`/collections/${c.slug}`} className="text-xs tracking-label uppercase underline-reveal">
                 Shop the Collection
               </Link>

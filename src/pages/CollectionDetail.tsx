@@ -36,9 +36,11 @@ export default function CollectionDetail() {
       </section>
 
       <div className="max-w-[1600px] mx-auto px-6 md:px-10 py-20 md:py-28">
-        <RevealText className="max-w-2xl text-brown/80 leading-relaxed mb-16 text-base md:text-lg">
-          {collection.description}
-        </RevealText>
+        <RevealText className="max-w-2xl mx-auto text-center text-brown/80 leading-relaxed mb-16 text-base md:text-lg">
+  <span className="font-display text-5xl md:text-6xl leading-none align-[-0.3em] mr-1 text-brown/40">&ldquo;</span>
+  {collection.description}
+  <span className="font-display text-5xl md:text-6xl leading-none align-[-0.3em] ml-1 text-brown/40">&rdquo;</span>
+</RevealText>
 
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-x-6 gap-y-14">
           {pieces.map((p) => (

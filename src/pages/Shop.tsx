@@ -4,6 +4,14 @@ import RevealText from '@/components/ui/RevealText'
 import ProductCard from '@/components/products/ProductCard'
 import { useCatalog } from '@/lib/catalog'
 
+const FILTERS = [
+  { label: 'All Products', key: 'all' },
+  { label: 'Nikhaar Collection', key: 'nikhaar' },
+  { label: 'Autumn/Winter \u201926/\u201927', key: 'aw-26-27' },
+] as const
+
+type FilterKey = (typeof FILTERS)[number]['key']
+
 const SORT_OPTIONS = [
   'Featured',
   'Best Selling',
@@ -14,31 +22,26 @@ const SORT_OPTIONS = [
 ] as const
 
 export default function Shop() {
-  const { products, categories: liveCategories } = useCatalog()
-  const categories = ['All', 'New Arrivals', ...(liveCategories.length ? liveCategories.map((category) => category.name) : ['Sets', 'Kurtas', 'Dresses', 'Separates', 'Occasionwear'])]
-  const [active, setActive] = useState('All')
+  const { products } = useCatalog()
+  const [active, setActive] = useState<FilterKey>('all')
   const [sort, setSort] = useState<(typeof SORT_OPTIONS)[number]>('Featured')
 
   const filtered = products
-    .filter((p) => {
-      if (active === 'All') return true
-      if (active === 'New Arrivals') return p.isNew
-      return p.category === (liveCategories.find((category) => category.name === active)?.slug || active.toLowerCase())
-    })
+    .filter((p) => active === 'all' || p.shopFilters?.includes(active))
     .sort((a, b) => {
-      switch (sort) {
-        case 'Alphabetically, A-Z':
-          return a.name.localeCompare(b.name)
-        case 'Alphabetically, Z-A':
-          return b.name.localeCompare(a.name)
-        case 'Price, Low to High':
-          return a.price - b.price
-        case 'Price, High to Low':
-          return b.price - a.price
-        default:
-          return 0
-      }
-    })
+        switch (sort) {
+          case 'Alphabetically, A-Z':
+            return a.name.localeCompare(b.name)
+          case 'Alphabetically, Z-A':
+            return b.name.localeCompare(a.name)
+          case 'Price, Low to High':
+            return a.price - b.price
+          case 'Price, High to Low':
+            return b.price - a.price
+          default:
+            return 0
+        }
+      })
 
   return (
     <div className="pt-32 md:pt-40 pb-24">
@@ -48,17 +51,17 @@ export default function Shop() {
         </RevealText>
 
         <div className="flex flex-wrap items-center justify-center gap-2 mb-8">
-          {categories.map((c) => (
+          {FILTERS.map((f) => (
             <button
-              key={c}
-              onClick={() => setActive(c)}
+              key={f.key}
+              onClick={() => setActive(f.key)}
               className={`text-xs tracking-label uppercase px-4 py-2 border transition-colors duration-300 ${
-                active === c
+                active === f.key
                   ? 'border-charcoal bg-charcoal text-softwhite'
                   : 'border-charcoal/15 hover:border-charcoal/40'
               }`}
             >
-              {c}
+              {f.label}
             </button>
           ))}
         </div>
@@ -97,7 +100,7 @@ export default function Shop() {
           ))}
           {filtered.length === 0 && (
             <p className="col-span-full text-brown/60 py-16 text-center">
-              No pieces in this category yet.
+              No pieces in this collection yet.
             </p>
           )}
         </div>
