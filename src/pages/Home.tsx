@@ -2,6 +2,7 @@ import Hero from '@/components/hero/Hero'
 import BrandIntro from '@/components/editorial/BrandIntro'
 import FeaturedCollection from '@/components/editorial/FeaturedCollection'
 // import ProductGrid from '@/components/products/ProductGrid'
+import Testimonials from '@/components/editorial/Testimonial'
 import CraftSection from '@/components/editorial/CraftSection'
 // import ParallaxSection from '@/components/editorial/ParallaxSection'
 import StorySection from '@/components/editorial/StorySection'
@@ -25,16 +26,17 @@ export default function Home() {
       <Marquee text={marqueeText || fallbackMarquee} />
       {/* <StorefrontBanners />  */}
       <BrandIntro />
-      <FeaturedCollection />
+      {/* <FeaturedCollection /> */}
+        <StorySection />
       {/* <ProductGrid /> */}
       <CraftSection />
       {/* <ParallaxSection /> */}
-      <StorySection />
+        <ReelsSection />
       {/* <InstagramGrid /> */}
       <CampaignVideo />
    
       <PhilosophySection />
-         <ReelsSection />
+      <Testimonials/>
       <Promises/>
       <CloserLook />
     </>

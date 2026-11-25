@@ -578,7 +578,7 @@ import {
   type MotionValue,
 } from "framer-motion";
 
-import founderImage from "../assets/products/Founder Image.jpg";
+
 
 /* ------------------------------------------------------------------ */
 /* Assets                                                              */
@@ -586,7 +586,7 @@ import founderImage from "../assets/products/Founder Image.jpg";
 const ABOUT_CHAPTER_IMAGES = [
   "https://pub-5910ba650a5b4f4ba76486d5a3630c49.r2.dev/Israaya-Media-Assets/products/6b047fcb0da3c81af8c161b7/variant-6zu/f273d216-0c34-41d1-8518-854d986e8c8d.webp",
   "https://pub-5910ba650a5b4f4ba76486d5a3630c49.r2.dev/Israaya-Media-Assets/products/6b047fcb0da3c81af8c161b7/variant-6zu/e551f95b-9800-4094-9cee-136f57246d32.webp",
-  "https://pub-5910ba650a5b4f4ba76486d5a3630c49.r2.dev/Israaya-Media-Assets/products/6b047c070da3c81af8c160d7/variant-oh2/5d9be5d3-c62e-4368-bb7b-2e1484fb1270.webp",
+  "https://pub-5910ba650a5b4f4ba76486d5a3630c49.r2.dev/Israaya-Media-Assets/founder.jpg",
   "https://pub-5910ba650a5b4f4ba76486d5a3630c49.r2.dev/Israaya-Media-Assets/products/6b04859d0da3c81af8c1648c/variant-bbt/fe0a8d81-3e43-4c6a-90c8-e5baf8c11934.webp",
   "https://pub-5910ba650a5b4f4ba76486d5a3630c49.r2.dev/Israaya-Media-Assets/products/6b04792a0da3c81af8c15f94/variant-1m3/2972a9be-8b58-4f0e-9fe0-11f79d0a33a3.webp",
   "https://pub-5910ba650a5b4f4ba76486d5a3630c49.r2.dev/Israaya-Media-Assets/products/6b047c070da3c81af8c160d7/variant-oh2/5d9be5d3-c62e-4368-bb7b-2e1484fb1270.webp",
@@ -600,7 +600,7 @@ const ABOUT_CHAPTER_IMAGES = [
 const IMG = {
   hero: ABOUT_CHAPTER_IMAGES[0],
   story: ABOUT_CHAPTER_IMAGES[1],
- founder: founderImage,
+ founder: ABOUT_CHAPTER_IMAGES[2],
   quote: ABOUT_CHAPTER_IMAGES[3],
   philosophy: ABOUT_CHAPTER_IMAGES[4],
   values: ABOUT_CHAPTER_IMAGES[5],

@@ -1,9 +1,12 @@
 import RevealText from '@/components/ui/RevealText'
 import SectionLabel from '@/components/ui/SectionLabel'
-import { siteImages } from '@/data/images'
 
-const craftImageLarge = siteImages.craftLarge
-const craftImageSmall = siteImages.craftSmall
+
+const craftImageLarge =
+  'https://pub-5910ba650a5b4f4ba76486d5a3630c49.r2.dev/Israaya-Media-Assets/mi1.png'
+
+const craftImageSmall =
+  'https://pub-5910ba650a5b4f4ba76486d5a3630c49.r2.dev/Israaya-Media-Assets/mi2.png'
 
 export default function CraftSection() {
   return (
