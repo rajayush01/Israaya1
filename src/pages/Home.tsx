@@ -1,6 +1,6 @@
 import Hero from '@/components/hero/Hero'
 import BrandIntro from '@/components/editorial/BrandIntro'
-import FeaturedCollection from '@/components/editorial/FeaturedCollection'
+//import FeaturedCollection from '@/components/editorial/FeaturedCollection'
 // import ProductGrid from '@/components/products/ProductGrid'
 import Testimonials from '@/components/editorial/Testimonial'
 import CraftSection from '@/components/editorial/CraftSection'
