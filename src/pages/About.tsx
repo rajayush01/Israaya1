@@ -578,6 +578,8 @@ import {
   type MotionValue,
 } from "framer-motion";
 
+import founderImage from "./assets/products/Founder Image.jpg";
+
 /* ------------------------------------------------------------------ */
 /* Assets                                                              */
 /* ------------------------------------------------------------------ */
@@ -598,7 +600,7 @@ const ABOUT_CHAPTER_IMAGES = [
 const IMG = {
   hero: ABOUT_CHAPTER_IMAGES[0],
   story: ABOUT_CHAPTER_IMAGES[1],
-  founder: ABOUT_CHAPTER_IMAGES[2],
+ founder: founderImage,
   quote: ABOUT_CHAPTER_IMAGES[3],
   philosophy: ABOUT_CHAPTER_IMAGES[4],
   values: ABOUT_CHAPTER_IMAGES[5],
