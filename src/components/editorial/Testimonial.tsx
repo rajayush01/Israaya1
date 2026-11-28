@@ -156,7 +156,7 @@ export default function Testimonials() {
         <RevealText
           delay={0.1}
           as="h2"
-          className="font-display text-[10vw] md:text-[4.2vw] leading-[0.98] mt-4 max-w-4xl"
+          className="font-display text-[10vw] md:text-[3vw] leading-[0.98] mt-4 max-w-4xl"
         >
           Worn with love.
           <br />
@@ -179,7 +179,7 @@ export default function Testimonials() {
           {testimonials.map((t, i) => (
             <article
               key={`original-${i}`}
-              className="testimonial-card group flex flex-col justify-between bg-cream p-8 md:p-12"
+              className="testimonial-card group flex flex-col justify-between bg-white p-8 md:p-12"
             >
               {/* Outer frame */}
               <div className="absolute inset-0 border border-brown/20 pointer-events-none" />

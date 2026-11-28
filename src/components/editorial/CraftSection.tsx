@@ -19,7 +19,7 @@ export default function CraftSection() {
         <RevealText
           as="h2"
           delay={0.1}
-          className="font-display text-[10vw] md:text-[4.2vw] leading-[0.98] mt-4 max-w-3xl"
+          className="font-display text-[10vw] md:text-[2.5vw] leading-[0.98] mt-4 max-w-3xl"
         >
           Every piece begins with the hands that make it.
         </RevealText>

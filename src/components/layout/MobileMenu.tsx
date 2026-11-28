@@ -6,8 +6,9 @@ import { siteImages } from '@/data/images'
 const links = [
   { label: 'Shop', to: '/shop' },
   { label: 'Collections', to: '/collections' },
-  { label: 'Stories', to: '/stories' },
   { label: 'About', to: '/about' },
+  { label: 'FAQ', to: '/faq' },
+  { label: 'Contact', to: '/contact' },
 ]
 
 export default function MobileMenu({ onClose }: { onClose: () => void }) {
@@ -46,7 +47,7 @@ export default function MobileMenu({ onClose }: { onClose: () => void }) {
               <Link
                 to={link.to}
                 onClick={onClose}
-                className="font-display text-5xl text-softwhite/90 py-3 block"
+                className="font-display text-4xl sm:text-5xl text-softwhite/90 py-2 sm:py-3 block"
               >
                 {link.label}
               </Link>

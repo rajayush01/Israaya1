@@ -188,7 +188,7 @@ export default function Hero() {
           initial={{ opacity: 0, y: 28 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.7, duration: 1, ease }}
-          className="font-display text-[13vw] leading-[0.92] tracking-tight text-softwhite md:text-[6vw]"
+          className="font-display text-[10vw] leading-[0.92] tracking-tight text-softwhite md:text-[5vw]"
         >
           The New Language of Indian Wear
           <br />

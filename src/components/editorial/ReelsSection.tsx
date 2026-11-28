@@ -213,7 +213,7 @@ export default function ReelsSection() {
           </p>
 
           <h2
-            className="mt-5 text-[clamp(2.7rem,5vw,4.1rem)] italic leading-none text-[#292522]"
+            className="mt-5 text-[clamp(2.7rem,5vw,3.1rem)] italic leading-none text-[#292522]"
             style={{ fontFamily: "'Cormorant Garamond', serif" }}
           >
             Shop by reels

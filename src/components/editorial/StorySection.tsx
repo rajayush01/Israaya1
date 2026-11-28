@@ -9,7 +9,7 @@ export default function StorySection() {
       <RevealText>
         <SectionLabel>The Stories We Wear</SectionLabel>
       </RevealText>
-      <RevealText as="h2" delay={0.1} className="font-display text-[9vw] md:text-[3.6vw] mt-3 mb-14 leading-[0.98]">
+      <RevealText as="h2" delay={0.1} className="font-display text-[9vw] md:text-[3vw] mt-3 mb-14 leading-[0.98]">
         Told through every chapter.
       </RevealText>
 

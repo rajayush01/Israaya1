@@ -4,6 +4,10 @@ import Lenis from 'lenis'
 /** Set to false to use plain native scrolling everywhere (the most bulletproof option). */
 const ENABLE_SMOOTH_SCROLL = true
 
+// Shared so overlays (cart, search) can pause page scrolling while they are open.
+let activeLenis: Lenis | null = null
+export const getLenis = () => activeLenis
+
 export default function useSmoothScroll() {
   useEffect(() => {
     if (!ENABLE_SMOOTH_SCROLL) return
@@ -17,6 +21,7 @@ export default function useSmoothScroll() {
     if (reduced || !finePointer || cores < 6 || memory < 4) return
 
     const lenis = new Lenis({ lerp: 0.1, smoothWheel: true, autoRaf: false })
+    activeLenis = lenis
 
     // Drive Lenis only while a scroll is happening — no idle 60fps loop.
     let frameId = 0
@@ -44,6 +49,7 @@ export default function useSmoothScroll() {
       events.forEach((e) => window.removeEventListener(e, kick))
       cancelAnimationFrame(frameId)
       lenis.destroy()
+      if (activeLenis === lenis) activeLenis = null
     }
   }, [])
 }

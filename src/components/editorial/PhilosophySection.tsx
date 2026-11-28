@@ -16,7 +16,7 @@ export default function PhilosophySection() {
         </RevealText>
 
         <div>
-          <RevealText as="h2" className="font-display text-[9vw] md:text-[3.6vw] leading-[1.02]">
+          <RevealText as="h2" className="font-display text-[9vw] md:text-[3vw] leading-[1.02]">
             Made in India.
             <br />
             Worn around the world.

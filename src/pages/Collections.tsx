@@ -1,11 +1,23 @@
 import { Link } from 'react-router-dom'
 import RevealText from '@/components/ui/RevealText'
+import InViewVideo from '@/components/ui/InViewVideo'
 import { collections } from '@/data/collections'
+import { useCatalog } from '@/lib/catalog'
 
 const collectionVideo =
   'https://pub-5910ba650a5b4f4ba76486d5a3630c49.r2.dev/IsrayaaFinalwebp/VID-11-compressed.mp4'
 
 export default function Collections() {
+  const { products } = useCatalog()
+
+  const countFor = (c: (typeof collections)[number]) =>
+    products.filter(
+      (p) =>
+        c.pieceIds.includes(p.id) ||
+        p.collection.toLowerCase() === c.name.toLowerCase() ||
+        p.category === c.slug,
+    ).length
+
   return (
     <div className="pt-32 md:pt-40 pb-24 max-w-[1600px] mx-auto px-6 md:px-10">
       <RevealText
@@ -16,60 +28,56 @@ export default function Collections() {
       </RevealText>
 
       <div className="flex flex-col gap-20">
-        {collections.map((c, i) => (
-          <RevealText
-            key={c.slug}
-            delay={i * 0.1}
-            className="grid md:grid-cols-2 gap-8 items-center"
-          >
-            <Link
-              to={`/collections/${c.slug}`}
-              className={`block overflow-hidden group ${
-                i % 2 === 1 ? 'md:order-2' : ''
-              }`}
+        {collections.map((c, i) => {
+          const count = countFor(c)
+          return (
+            <RevealText
+              key={c.slug}
+              delay={i * 0.1}
+              className="grid md:grid-cols-2 gap-8 items-center"
             >
-              <video
-                autoPlay
-                muted
-                loop
-                playsInline
-                preload="metadata"
-           className="w-full h-[700px] md:h-[900px] object-cover object-top transition-transform duration-[1200ms] ease-out group-hover:scale-105"
-              >
-                <source src={collectionVideo} type="video/mp4" />
-              </video>
-            </Link>
-
-            <div>
-              <p className="text-[10px] tracking-label uppercase text-brown/50 mb-3">
-                {c.chapter}
-              </p>
-
-              <p className="font-display text-4xl md:text-5xl mb-4">
-                {c.name}
-              </p>
-
-              <p className="text-brown/70 mb-8 max-w-2xl italic font-display text-lg">
-                Nikhaar means the full blossoming of beauty into its most radiant
-                form, the moment a flower stops growing and simply becomes what
-                it was always meant to be. This is our debut chapter, the one
-                Israaya launches from, and it draws its inspiration entirely
-                from nature, from gardens, from the small quiet details you only
-                notice when you slow down and actually look. Every piece takes
-                its name from something found there, a star caught in moonlight,
-                a peacock feather, a bird mid-flight, each one carrying its own
-                small story from the natural world.
-              </p>
-
               <Link
                 to={`/collections/${c.slug}`}
-                className="text-xs tracking-label uppercase underline-reveal"
+                aria-label={`Shop the ${c.name} collection`}
+                className={`block overflow-hidden group bg-charcoal ${i % 2 === 1 ? 'md:order-2' : ''}`}
               >
-                Shop the Collection
+                <InViewVideo
+                  src={collectionVideo}
+                  poster={c.image}
+                  className="w-full h-[620px] md:h-[min(900px,82vh)] object-cover object-top transition-transform duration-[1400ms] ease-out group-hover:scale-[1.03]"
+                />
               </Link>
-            </div>
-          </RevealText>
-        ))}
+
+              <div>
+                <p className="text-[10px] tracking-label uppercase text-brown/50 mb-3">
+                  {c.chapter}
+                  {count > 0 && ` · ${count} ${count === 1 ? 'piece' : 'pieces'}`}
+                </p>
+
+                <p className="font-display text-4xl md:text-5xl mb-4">{c.name}</p>
+
+                <p className="text-brown/70 mb-8 max-w-2xl italic font-display text-lg">
+                  Nikhaar means the full blossoming of beauty into its most radiant
+                  form, the moment a flower stops growing and simply becomes what
+                  it was always meant to be. This is our debut chapter, the one
+                  Israaya launches from, and it draws its inspiration entirely
+                  from nature, from gardens, from the small quiet details you only
+                  notice when you slow down and actually look. Every piece takes
+                  its name from something found there, a star caught in moonlight,
+                  a peacock feather, a bird mid-flight, each one carrying its own
+                  small story from the natural world.
+                </p>
+
+                <Link
+                  to={`/collections/${c.slug}`}
+                  className="text-xs tracking-label uppercase underline-reveal"
+                >
+                  Shop the Collection
+                </Link>
+              </div>
+            </RevealText>
+          )
+        })}
       </div>
     </div>
   )

@@ -34,7 +34,7 @@ export default function BrandIntro() {
         <RevealText
           as="h2"
           delay={0.1}
-          className="md:col-span-6 font-display text-[8vw] md:text-[2.8vw] leading-[1.1] text-charcoal"
+          className="md:col-span-6 font-display text-[8vw] md:text-[2.5vw] leading-[1.1] text-charcoal"
         >
           The new language of Indian wear.
         </RevealText>

@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import { useParams, Navigate } from 'react-router-dom'
 import { m, AnimatePresence } from 'framer-motion'
 import { ChevronDown, Heart } from 'lucide-react'
@@ -9,8 +9,7 @@ import RevealText from '@/components/ui/RevealText'
 import ProductCard from '@/components/products/ProductCard'
 import ProductGallery from '@/components/products/ProductGallery'
 import SizeGuideModal from '@/components/ui/SizeGuideModal'
-
-const fallbackSizes = ['XS', 'S', 'M', 'L', 'XL', 'XXL', '3XL', '4XL', '5XL', '6XL']
+import { FALLBACK_SIZES as fallbackSizes } from '@/lib/sizes'
 
 type ProductVariantOption = {
   id: string
@@ -48,6 +47,10 @@ export default function Product() {
   const [sizeGuideOpen, setSizeGuideOpen] = useState(false)
   const { addToCart, toggleWishlist, wishlist } = useStore()
   const [selectedVariantId, setSelectedVariantId] = useState<string | undefined>()
+  const [added, setAdded] = useState(false)
+  const addedTimer = useRef<number>(0)
+
+  useEffect(() => () => window.clearTimeout(addedTimer.current), [])
 
   useEffect(() => {
     setSelectedVariantId(product?.defaultVariantId || product?.variants?.[0]?.id)
@@ -74,6 +77,7 @@ export default function Product() {
   const related = products.filter((p) => p.id !== product.id && p.category === product.category).slice(0, 3)
   const sizes: string[] = selectedVariant ? selectedVariant.sizes : product.sizes?.length ? product.sizes : fallbackSizes
   const isWishlisted = wishlist.includes(product.id)
+  const unavailable = Boolean(selectedVariant) && sizes.length === 0
 
   const accordionContent: Record<string, React.ReactNode> = {
     fabricCraft: product.fabric || product.craft || 'Please contact us for fabric and craftsmanship details.',
@@ -182,11 +186,17 @@ export default function Product() {
 
           <div className="flex gap-3 mb-10">
             <button
-              onClick={() => size && activeProduct && addToCart(activeProduct, size)}
-              disabled={!size}
+              onClick={() => {
+                if (!size || !activeProduct) return
+                addToCart(activeProduct, size)
+                setAdded(true)
+                window.clearTimeout(addedTimer.current)
+                addedTimer.current = window.setTimeout(() => setAdded(false), 1800)
+              }}
+              disabled={!size || unavailable}
               className="flex-1 bg-burgundy text-softwhite py-4 text-xs tracking-label uppercase hover:bg-wine transition-colors duration-500 disabled:opacity-40 disabled:cursor-not-allowed"
             >
-              {size ? 'Add to Bag' : 'Select a Size'}
+              {unavailable ? 'Currently Unavailable' : added ? 'Added to Bag ✓' : size ? 'Add to Bag' : 'Select a Size'}
             </button>
             <button
               onClick={() => toggleWishlist(product.id)}

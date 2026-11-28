@@ -14,10 +14,23 @@ type CatalogValue = {
 }
 
 const CatalogContext = createContext<CatalogValue | null>(null)
-const API_BASE = (import.meta.env.VITE_API_BASE_URL || 'http://localhost:5000').replace(/\/$/, '')
+export const API_BASE = (import.meta.env.VITE_API_BASE_URL || 'http://localhost:5000').replace(/\/$/, '')
 const record = (value: unknown): Record<string, any> => value && typeof value === 'object' ? value as Record<string, any> : {}
 const list = (value: unknown): any[] => Array.isArray(value) ? value : []
 const nameOf = (value: unknown, fallback: string) => String(record(value).name || fallback)
+
+const fallbackFilters = new Map(fallbackProducts.map((p) => [p.id, p.shopFilters]))
+
+/** API products carry no shopFilters; infer them from tags/category names (or reuse the local mapping by slug). */
+function deriveShopFilters(slug: string, haystack: string): Product['shopFilters'] {
+  const known = fallbackFilters.get(slug)
+  if (known?.length) return known
+  const text = haystack.toLowerCase()
+  const filters: NonNullable<Product['shopFilters']> = []
+  if (text.includes('nikhaar')) filters.push('nikhaar')
+  if (/aw[\s-]?26|autumn|winter/.test(text)) filters.push('aw-26-27')
+  return filters
+}
 
 function mapProduct(value: unknown): Product {
   const raw = record(value)
@@ -68,6 +81,7 @@ function mapProduct(value: unknown): Product {
     variants: mappedVariants,
     defaultVariantId: defaultId || variant?.id,
     category: String(category.slug || nameOf(category, 'all').toLowerCase().replace(/[^a-z0-9]+/g, '-')),
+    shopFilters: deriveShopFilters(slug, [nameOf(subCategory, ''), nameOf(category, ''), ...tags].join(' ')),
     isNew: tags.some((tag) => tag.toLowerCase() === 'new') || Boolean(raw.createdAt && Date.now() - new Date(raw.createdAt).getTime() < 30 * 86400000),
   }
 }
@@ -82,8 +96,10 @@ export function CatalogProvider({ children }: { children: ReactNode }) {
 
   useEffect(() => {
     let active = true
+    const controller = new AbortController()
+    const timeout = window.setTimeout(() => controller.abort(), 8000)
     const get = async (path: string) => {
-      const response = await fetch(`${API_BASE}/storefront/${path}`)
+      const response = await fetch(`${API_BASE}/storefront/${path}`, { signal: controller.signal })
       if (!response.ok) throw new Error(`Storefront API returned ${response.status}`)
       return response.json()
     }
@@ -107,9 +123,16 @@ export function CatalogProvider({ children }: { children: ReactNode }) {
         setMarqueeText(String(record(record(marqueeResponse).data).text || ''))
       })
       .catch((error) => console.warn('Using local catalog until storefront API is available:', error))
-      .finally(() => { if (active) setLoading(false) })
+      .finally(() => {
+        window.clearTimeout(timeout)
+        if (active) setLoading(false)
+      })
 
-    return () => { active = false }
+    return () => {
+      active = false
+      window.clearTimeout(timeout)
+      controller.abort()
+    }
   }, [])
 
   const value = useMemo(() => ({ products, categories, announcements, popupBanner, marqueeText, loading }), [products, categories, announcements, popupBanner, marqueeText, loading])

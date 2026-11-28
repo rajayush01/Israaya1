@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react'
 import { Link, useLocation } from 'react-router-dom'
 import { m, AnimatePresence } from 'framer-motion'
 import { Search, User, ShoppingBag, Menu } from 'lucide-react'
-import { useStore } from '@/lib/store'
+import { selectItemCount, useStore } from '@/lib/store'
 import MobileMenu from './MobileMenu'
 import logo from '@/assets/ISRAAYA LOGO.svg'
 import logo1 from '@/assets/ISRAAYA MOTIF.svg'
@@ -18,8 +18,9 @@ const NAV_LINKS = [
 export default function Header() {
   const [scrolled, setScrolled] = useState(false)
   const [mobileOpen, setMobileOpen] = useState(false)
-  const { cart, setCartOpen, setSearchOpen } = useStore()
-  const itemCount = cart.reduce((n, i) => n + i.quantity, 0)
+  const setCartOpen = useStore((s) => s.setCartOpen)
+  const setSearchOpen = useStore((s) => s.setSearchOpen)
+  const itemCount = useStore(selectItemCount)
   const { pathname } = useLocation()
   const isHome = pathname === '/'
 
@@ -111,7 +112,7 @@ export default function Header() {
           >
             <button
               onClick={() => setSearchOpen(true)}
-              className="hidden sm:inline-flex p-1"
+              className="inline-flex p-1"
               aria-label="Search"
               data-cursor="Search"
             >

@@ -120,6 +120,8 @@ import Returns from '@/pages/Returns'
 import FAQ from '@/pages/FAQ'
 import Privacy from '@/pages/Privacy'
 import Terms from '@/pages/Terms'
+import Checkout from '@/pages/Checkout'
+import CheckoutSuccess from '@/pages/CheckoutSuccess'
 import { CatalogProvider } from '@/lib/catalog'
 
 function PageTransition({ children }: { children: ReactNode }) {
@@ -214,6 +216,14 @@ function AnimatedRoutes() {
         <Route
           path="/terms"
           element={<PageTransition><Terms /></PageTransition>}
+        />
+        <Route
+          path="/checkout"
+          element={<PageTransition><Checkout /></PageTransition>}
+        />
+        <Route
+          path="/checkout/success"
+          element={<PageTransition><CheckoutSuccess /></PageTransition>}
         />
       </Routes>
     </AnimatePresence>
